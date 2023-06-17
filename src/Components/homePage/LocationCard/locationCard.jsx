@@ -11,6 +11,7 @@ export const LocationCard = (props) => {
         <div className={`locationCard ${theme}`}>
             <i className={`bx ${props.icon ? props.icon : "icon"}`}/>
             <h1>{props.title ? props.title : "Title"}</h1>
+            {props.description !== "" ? <p className="description">{props.description}</p> : <div/>}
         </div>
     )
 };

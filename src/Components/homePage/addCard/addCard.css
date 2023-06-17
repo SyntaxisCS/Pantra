@@ -24,3 +24,12 @@
 .addCard:hover {
     background-color: color-mix(in srgb, black 10%, var(--lightBackground) 90%);
 }
+
+/* Dark Theme */
+.addCard.darkTheme {
+    background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
+}
+
+.addCard.darkTheme:hover {
+    background-color: color-mix(in srgb, black 90%, var(--darkBackground) 10%);
+}

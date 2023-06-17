@@ -19,7 +19,7 @@ export const LocationItemPage = (props) => {
     }
 
     return (
-        <div className="locationItemPage">
+        <div className={`locationItemPage ${theme}`}>
             <div className="backBtn" onClick={handleBackClick}>
                 <i className="bx bx-arrow-back"/><span>Back</span>
             </div>

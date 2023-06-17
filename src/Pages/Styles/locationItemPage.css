@@ -24,3 +24,9 @@
     margin-left: 0.5em;
     font-size: 20px;
 }
+
+/* Dark Theme */
+.locationItemPage {
+    color: var(--darkText);
+    background-color: var(--darkBackground);
+}

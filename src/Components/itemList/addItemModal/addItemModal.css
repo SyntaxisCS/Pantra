@@ -98,3 +98,12 @@
 .addItemModal.show .modal .addBtn:hover {
     background-color: var(--accent);
 }
+
+/* Dark Theme */
+.addItemModal.show.darkTheme .modal {
+    background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
+}
+
+.addItemModal.show.darkTheme .modal input {
+    color: var(--darkText);
+}

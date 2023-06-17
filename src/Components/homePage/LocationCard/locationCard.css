@@ -22,6 +22,23 @@
     margin-bottom: 0;
 }
 
+.locationCard .description {
+    margin: 0;
+    font-size: 16px;
+    color: color-mix(in srgb, white 60%, var(--lightText) 40%);
+}
+
 .locationCard:hover {
     background-color: color-mix(in srgb, black 10%, var(--lightBackground) 90%);
+}
+
+/* Dark Theme */
+.locationCard.darkTheme {
+    border: 1px solid var(--darkBackground);
+    background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
+}
+
+.locationCard.darkTheme:hover {
+    border: 1px solid var(--accent);
+    background-color: color-mix(in srgb, black 90%, var(--darkBackground) 10%);
 }

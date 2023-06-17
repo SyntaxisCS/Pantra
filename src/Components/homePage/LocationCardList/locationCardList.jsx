@@ -119,7 +119,7 @@ export const LocationCardList = (props) => {
             <div key={index} className="location">
                 <button className="deleteBtn" onClick={() => handleDeleteLocation(location.id)}><i className="bx bx-trash"/></button>
                 <div className="locationClick" onClick={() => handleCardClick(location.id)}>
-                    <LocationCard icon={location.icon} title={location.title}/>
+                    <LocationCard icon={location.icon} title={location.title} description={location.description ? location.description : ""}/>
                 </div>
 
                 <LocationDeleteConfirmModal isOpen={showDeleteModal} onClose={handleCloseDeleteModal} onDeleteConfirm={() => deleteLocationConfirm(location.id)} locationName={location.title} numOfItems={location.items}/>

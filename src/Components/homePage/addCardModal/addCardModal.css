@@ -79,3 +79,8 @@
 .addCardModal.show .modal .addBtn:hover {
 	background-color: var(--accent);
 }
+
+/* Dark Theme */
+.addCardModal.show.darkTheme .modal {
+	background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
+}

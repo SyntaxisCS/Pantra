@@ -4,9 +4,11 @@ import { useNavigate } from "react-router";
 // Utils
 import "./Styles/homePage.css";
 import { LocationCardList } from "../Components/homePage/LocationCardList/locationCardList";
+import { useTheme } from "../Utils/Themes/theme";
 
 export const HomePage = (props) => {
     // Utils
+    const theme = useTheme().theme;
     const navigate = useNavigate();
     
     // Functions
@@ -15,7 +17,7 @@ export const HomePage = (props) => {
     };
 
     return (
-        <div className="homePage">
+        <div className={`homePage ${theme}`}>
             <h1 className="logo">Pantra</h1>
 
             <div className="settingsButton" onClick={handleSettingsClick}>
