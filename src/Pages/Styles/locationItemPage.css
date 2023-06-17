@@ -1,0 +1,26 @@
+.locationItemPage {
+    min-height: 100vh;
+    height: fit-content;
+    color: var(--lightText);
+    background-color: var(--lightBackground);
+}
+
+.locationItemPage .backBtn {
+    top: 1em;
+    left: 1em;
+    cursor: pointer;
+    position: absolute;
+}
+
+.locationItemPage .backBtn:hover {
+    color: var(--primary);
+}
+
+.locationItemPage .backBtn i {
+    font-size: 20px;
+}
+
+.locationItemPage .backBtn span {
+    margin-left: 0.5em;
+    font-size: 20px;
+}

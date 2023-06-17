@@ -1,0 +1,33 @@
+.aboutSettingsPage {
+    min-height: 100vh;
+    height: fit-content;
+    color: var(--lightText);
+    background-color: var(--lightBackground);
+}
+
+.aboutSettingsPage .backBtn {
+    top: 1em;
+    left: 1em;
+    cursor: pointer;
+    position: absolute;
+}
+
+.aboutSettingsPage .backBtn:hover {
+    color: var(--primary);
+}
+
+.aboutSettingsPage .backBtn i {
+    font-size: 20px;
+}
+
+.aboutSettingsPage .backBtn span {
+    font-size: 20px;
+    margin-left: 0.5em;
+}
+
+/* Dark Theme */
+
+.aboutSettingsPage.darkTheme {
+    color: var(--darkText);
+    background-color: var(--darkBackground);
+}

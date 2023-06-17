@@ -1,0 +1,81 @@
+.addCardModal.show {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+	overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.addCardModal.hidden {
+    display: none;
+}
+  
+.addCardModal.show .modal {
+	padding: 20px;
+	max-width: 400px;
+	border-radius: 5px;
+	background-color: #ffffff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.addCardModal.show .modal i {
+	font-size: 30px;
+	padding: 0;
+	float: right;
+	margin-bottom: 2em;
+	transition: transform 0.50s;
+}
+
+.addCardModal.show .modal i:hover {
+	transform: rotate(360deg);
+}
+  
+.addCardModal.show .modal h2 {
+    margin-top: 0;
+}
+  
+.addCardModal.show .modal label {
+    display: block;
+    margin-top: 10px;
+}
+  
+.addCardModal.show .modal input {
+    width: 100%;
+	padding: 8px;
+	margin: 8px 0;
+	outline: none;
+	color: var(--lightText);
+	display: block;
+	font-size: 16px;
+	border-radius: 5px;
+	caret-color: var(--primary);
+	box-sizing: border-box;
+	border: 1px solid #e2e2e2;
+	background-color: var(--lightBackgroundSecondary);
+	/* font */
+}
+  
+.addCardModal.show .modal .addBtn {
+	border: none;
+	float: right;
+	margin: 3px 0;
+	font-size: 17px;
+	margin-top: 1em;
+	cursor: pointer;
+	margin-bottom: 0;
+	font-weight: 500;
+	padding: 10px 15px;
+	border-radius: 5px;
+	letter-spacing: 2px;
+	color: var(--darkText);
+	background-color: var(--primary);
+}
+
+.addCardModal.show .modal .addBtn:hover {
+	background-color: var(--accent);
+}

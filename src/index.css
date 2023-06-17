@@ -1,0 +1,29 @@
+/* Variables */
+:root {
+	/* Text */
+	--lightText: #222237;
+	--darkText: #ffffff;
+
+	/* Backgrounds */
+	--lightBackground: #f3f5f7; /* Base background color */
+	--darkBackground: #000000;
+
+	--primary: #8c00ff;
+	--accent: #EC02F7;
+	
+	/* Additionals */
+	--errorText: #c42b1c;
+}
+
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

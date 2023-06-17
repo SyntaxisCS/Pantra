@@ -1,0 +1,85 @@
+.themeSelector {
+    width: 25%;
+    margin: auto;
+    margin-top: 0;
+    display: flex;
+    max-width: 600px;
+    position: relative;
+    flex-direction: column;
+    transition: all ease 0.5s;
+    border-radius: 0 0 5px 5px;
+    padding: 20px 50px 50px 50px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+.themeSelector .title {
+    font-size: 16px;
+    margin-top: 0em;
+    font-weight: 500;
+    color: var(--lightText);
+}
+
+.themeSelector select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    outline: none;
+    display: block;
+    font-size: 16px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: var(--lightText);
+    border: 1px solid #e2e2e2;
+    caret-color: var(--primary);
+    background-color: var(--lightBackground);
+}
+
+.themeSelector select:focus {
+    border: 1px solid var(--primary);
+}
+
+.themeSelector button[type="button"] {
+    border: none;
+    margin: 3px 0;
+    color: var(--darkText);
+    font-size: 17px;
+    margin-top: 1em;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    background-color: var(--primary);
+}
+
+.themeSelector button[type="button"] {
+    background-color: var(--accent);
+}
+
+/* Dark Theme */
+.themeSelector.darkTheme {
+    background-color: var(--darkBackground);
+}
+
+.themeSelector.darkTheme .title {
+    color: var(--darkText);
+}
+
+.themeSelector.darkTheme select {
+    color: var(--darkText);
+    background-color: var(--darkBackground);
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 1300px) {
+    .themeSelector {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .themeSelector {
+        width: 75%;
+    }
+}

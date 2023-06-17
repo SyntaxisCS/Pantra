@@ -1,0 +1,27 @@
+.locationCard {
+    width: 250px;
+    display: flex;
+    padding: 20px;
+    min-height: 150px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: color-mix(in srgb, white 95%, var(--lightBackground) 5%);
+}
+
+.locationCard i {
+    font-size: 60px;
+    margin-bottom: 0;
+}
+
+.locationCard h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.locationCard:hover {
+    background-color: color-mix(in srgb, black 10%, var(--lightBackground) 90%);
+}

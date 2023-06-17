@@ -1,0 +1,142 @@
+.itemList {
+    width: 50%;
+    margin: auto;
+    padding-top: 5em;
+}
+
+.itemList .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 40px;
+    height: fit-content;
+}
+
+.itemList .header span {
+    font-size: 20px;
+    font-weight: 600;
+    height: 10px;
+}
+
+.itemList .header .addBtn {
+    border: none;
+    float: right;
+    margin: 3px 0;
+    font-size: 17px;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    color: var(--darkText);
+    transition: all 0.5s;
+    background-color: var(--primary);
+}
+
+.itemList .header .addBtn:hover {
+    transform: translateY(-5px);
+    box-shadow: 1px 1px 20px 5px rgba(140,0,255,0.34);
+}
+
+.itemList .itemListContainer {
+    width: 100%;
+    padding-top: 10px;
+    font-size: 18px;
+    cursor: default;
+    position: relative;
+}
+
+.itemList .itemListContainer .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.itemList .itemListContainer .item p {
+    margin: 0;
+    padding: 0;
+}
+
+.itemList .itemListContainer .itemBrand {
+    color: color-mix(in srgb, white 60%, var(--lightText) 40%);
+    font-size: 16px;
+}
+
+.itemList .itemListContainer .item .itemCountContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.itemList .item .minusButton,
+.itemList .item .plusButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 50%;
+    color: var(--darkText);
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.5s;
+    background-color: var(--primary);
+}
+
+.itemList .item .itemCountContainer:hover .minusButton,
+.itemList .item .itemCountContainer:hover .plusButton {
+    opacity: 1;
+}
+
+.itemList .item .minusButton {
+    left: -1.5em;
+}
+  
+.itemList .item .plusButton {
+    right: -1.5em;
+}
+
+.itemList .item .itemCount {
+    font-size: 25px;
+    padding: 2px 6px;
+    font-weight: 600;
+    color: var(--lightText);
+}
+
+.itemList .item .deleteButtonWrapper {
+    right: -3em;
+    position: absolute;
+}
+
+.itemList .item .deleteButtonWrapper .deleteBtn {
+    opacity: 0;
+    border: none;
+    float: right;
+    margin: 3px 0;
+    font-size: 17px;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    color: var(--darkText);
+    transition: opacity 0.3s;
+    transition: transform 0.5s;
+    background-color: var(--primary);
+}
+
+.itemList .item .deleteButtonWrapper .deleteBtn:hover {
+    transition: all 0.5s;
+    box-shadow: 1px 1px 20px 5px rgba(140,0,255,0.34);;
+}
+
+.itemList .item:hover .deleteBtn {
+    opacity: 1;
+    transform: translateX(0.75em);
+}

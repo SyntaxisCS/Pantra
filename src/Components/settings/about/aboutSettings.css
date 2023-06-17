@@ -1,0 +1,57 @@
+.aboutSettings {
+    width: 25%;
+    margin: auto;
+    margin-top: 0;
+    display: flex;
+    max-width: 600px;
+    position: relative;
+    flex-direction: column;
+    transition: all ease 0.5s;
+    border-radius: 0 0 5px 5px;
+    padding: 20px 50px 50px 50px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+.aboutSettings .header {
+    margin-top: 0;
+    text-align: center;
+}
+
+.aboutSettings .header .version {
+    color: #666666;
+    margin-top: -10px;
+}
+
+.aboutSettings .specialThanks {
+    text-align: center;
+}
+
+.aboutSettings .specialThanks .specialThanksDescription {
+    color: #666666;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 2.5em;
+}
+
+.aboutSettings .specialThanks .specialThanksFooter {
+    position: absolute;
+    color: #666666;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    bottom: 10px;
+    left: 0;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 1300px) {
+    .aboutSettings {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .aboutSettings {
+        width: 75%;
+    }
+}

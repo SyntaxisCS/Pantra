@@ -1,0 +1,11 @@
+/node_modules
+/build
+/out
+.DS_Store
+
+
+.env
+.env-dev
+.env.dev
+.env-prod
+.env.prod

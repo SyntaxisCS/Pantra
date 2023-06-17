@@ -1,0 +1,39 @@
+.homePage {
+    min-height: 100vh;
+    height: fit-content;
+    color: var(--lightText);
+    background-color: var(--lightBackground);
+}
+
+.homePage .logo {
+    padding-top: 0.5em;
+    margin: 0 0 1em 0.5em;
+}
+
+.homePage .settingsButton {
+    top: 1em;
+    right: 1em;
+    font-size: 17px;
+    cursor: pointer;
+    position: absolute;
+}
+
+.homePage .settingsButton i {
+    height: 100%;
+    font-size: 20px;
+    margin-right: 2px;
+}
+
+.homePage .settingsButton span {
+    font-weight: 600;
+}
+
+.homePage .settingsButton:hover {
+    color: var(--primary);
+}
+
+/* Dark Theme */
+.homePage.darkTheme {
+    color: var(--darkText);
+    background-color: var(--darkBackground);
+}

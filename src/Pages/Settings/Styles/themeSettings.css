@@ -1,0 +1,32 @@
+.themeSettingsPage {
+    min-height: 100vh;
+    height: fit-content;
+    color: var(--lightText);
+    background-color: var(--lightBackground);
+}
+
+.themeSettingsPage .backBtn {
+    top: 1em;
+    left: 1em;
+    cursor: pointer;
+    position: absolute;
+}
+
+.themeSettingsPage .backBtn:hover {
+    color: var(--primary);
+}
+
+.themeSettingsPage .backBtn i {
+    font-size: 20px;
+}
+
+.themeSettingsPage .backBtn span {
+    font-size: 20px;
+    margin-left: 0.5em;
+}
+
+/* Dark Theme */
+.themeSettingsPage.darkTheme {
+    color: var(--darkText);
+    background-color: var(--darkBackground);
+}
