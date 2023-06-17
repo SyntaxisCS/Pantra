@@ -46,13 +46,17 @@ export const ThemeProvider = ({children}) => {
         }
     };
 
-    React.useEffect(() => {
-        let savedTheme = getSetting("theme");
+    const getInitialTheme = async () => {
+        let savedTheme = await getSetting("theme");
         if (savedTheme) {
             changeTheme(savedTheme);
         } else {
             changeTheme("system");
         }
+    }
+
+    React.useEffect(() => {
+        getInitialTheme();
     }, []);
 
     return (
