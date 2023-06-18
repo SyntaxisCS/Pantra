@@ -13,6 +13,7 @@ export const AddItemModal = ({isOpen, onClose, onAddItem}) => {
     const [selectedName, setSelectedName] = React.useState("");
     const [selectedDescription, setSelectedDescription] = React.useState("");
     const [selectedExpiry, setSelectedExpiry] = React.useState("");
+    const [selectedCount, setSelectedCount] = React.useState(0);
 
     // Functions
     const handleBrandChange = (event) => {
@@ -29,6 +30,10 @@ export const AddItemModal = ({isOpen, onClose, onAddItem}) => {
 
     const handleExpiryChange = (event) => {
         setSelectedExpiry(event.target.value);
+    };
+
+    const handleCountChange = (event) => {
+        setSelectedCount(event.target.value);
     };
 
     const handleAddItem = () => {
@@ -51,6 +56,7 @@ export const AddItemModal = ({isOpen, onClose, onAddItem}) => {
         setSelectedName("");
         setSelectedDescription("");
         setSelectedExpiry("");
+        setSelectedCount(0);
     };
 
     return (
@@ -61,17 +67,21 @@ export const AddItemModal = ({isOpen, onClose, onAddItem}) => {
                 <h2>Add Item</h2>
 
                 <label htmlFor="brandInput">Brand</label>
-                <input type="text" id="brandInput" value={selectedBrand} onChange={handleBrandChange} placeholder="optional"/>
+                <input type="text" id="brandInput" value={selectedBrand} onChange={handleBrandChange} placeholder=""/>
 
-                <label htmlFor="nameInput">Name</label>
+                <label htmlFor="nameInput">* Name</label>
                 <input type="text" id="nameInput" value={selectedName} onChange={handleNameChange} />
 
                 <label htmlFor="descInput">Description</label>
-                <input type="text" id="descInput" value={selectedDescription} onChange={handleDescChange} placeholder="optional"/>
+                <input type="text" id="descInput" value={selectedDescription} onChange={handleDescChange} placeholder="(ex: 3rd shelf on right)"/>
 
                 <label htmlFor="expiryInput">Expiration?</label>
-                <input type="date" id="expiryInput" value={selectedExpiry} onChange={handleExpiryChange} placeholder="optional"/>
-            
+                <input type="date" id="expiryInput" value={selectedExpiry} onChange={handleExpiryChange} placeholder=""/>
+
+                <label htmlFor="countInput">* Quantity</label>
+                <input type="number" id="countInput" defaultValue={1} onChange={handleCountChange} placeholder="how many items would you like to add?"/>
+
+                <p>{"Items without *'s are not required"}</p>
                 <button onClick={handleAddItem} className="addBtn">Add</button>
             </div>
         </div>

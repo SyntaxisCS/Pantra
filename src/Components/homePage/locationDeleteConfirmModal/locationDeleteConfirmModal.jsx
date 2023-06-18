@@ -18,7 +18,7 @@ export const LocationDeleteConfirmModal = ({isOpen, onClose, onDeleteConfirm, lo
                 <p className="warningText">There is an irreversable action!</p>
 
                 <button onClick={onClose} className="cancelBtn">Nevermind!</button>
-                <button onClick={() => onDeleteConfirm} className="deleteBtn">Delete!</button>
+                <button onClick={onDeleteConfirm} className="deleteBtn">Delete!</button>
             </div>
         </div>
     )

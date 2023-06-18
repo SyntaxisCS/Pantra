@@ -113,12 +113,14 @@ export const ItemList = (props) => {
                     {items.map(item => (
                         <div key={item.name} className={`item`}>
                             <div className="text">
-
                                 <p className="itemName">{item.name}</p>
                                 <p className="itemBrand">{item.brand}</p>
                             </div>
 
-                            {item.expiry ? <p>{`Expires on ${item.expiry}`}</p> : <p/>}
+                            <div className="text">
+                                {item.description ? <p className="itemDescription">{item.description}</p> : <p/>}
+                                {item.expiry ? <p>{`Expires on ${item.expiry}`}</p> : <p/>}
+                            </div>
 
                             <div className="itemCountContainer">
                                 <button className="minusButton" onClick={() => handleItemCountSub(item.name)}>-</button>

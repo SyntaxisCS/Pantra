@@ -65,6 +65,11 @@
     font-size: 16px;
 }
 
+.itemList .itemCountContainer .itemDescription {
+    color: color-mix(in srgb, white 60%, var(--lightText) 40%);
+    font-size: 16px;
+}
+
 .itemList .itemListContainer .item .itemCountContainer {
     display: flex;
     align-items: center;

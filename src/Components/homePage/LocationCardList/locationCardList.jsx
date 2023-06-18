@@ -68,7 +68,6 @@ export const LocationCardList = (props) => {
                 if (items.length > 0) {
                     // ask for confirmation - open modal
                     handleOpenDeleteModal();
-                    window.location.reload();
                 } else {
                     // delete locations
                     deleteLocation(locationId);
@@ -122,7 +121,7 @@ export const LocationCardList = (props) => {
                     <LocationCard icon={location.icon} title={location.title} description={location.description ? location.description : ""}/>
                 </div>
 
-                <LocationDeleteConfirmModal isOpen={showDeleteModal} onClose={handleCloseDeleteModal} onDeleteConfirm={() => deleteLocationConfirm(location.id)} locationName={location.title} numOfItems={location.items}/>
+                <LocationDeleteConfirmModal isOpen={showDeleteModal} onClose={handleCloseDeleteModal} onDeleteConfirm={() => deleteLocationConfirm(location.id)} locationName={location.title} numOfItems={location.items.length}/>
             </div>
         ))}
 
