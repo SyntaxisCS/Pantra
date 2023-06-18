@@ -59,7 +59,7 @@
 
 /* Dark Theme */
 .themeSelector.darkTheme {
-    background-color: var(--darkBackground);
+    background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
 }
 
 .themeSelector.darkTheme .title {
@@ -70,6 +70,8 @@
     color: var(--darkText);
     background-color: var(--darkBackground);
 }
+
+/* Dark Theme */
 
 /* Responsiveness */
 @media only screen and (max-width: 1300px) {

@@ -97,3 +97,8 @@
     background-color: color-mix(in srgb, black 15%, var(--primary) 85%);
     box-shadow: none;
 }
+
+/* Dark Theme */
+.locationDeleteConfirmModal.show.darkTheme .modal {
+    background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
+}

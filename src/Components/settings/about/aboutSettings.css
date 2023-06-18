@@ -4,6 +4,7 @@
     margin-top: 0;
     display: flex;
     max-width: 600px;
+    border-radius: 5px;
     position: relative;
     flex-direction: column;
     transition: all ease 0.5s;
@@ -41,6 +42,11 @@
     margin: auto;
     bottom: 10px;
     left: 0;
+}
+
+/* Dark Theme */
+.aboutSettings.darkTheme {
+    background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
 }
 
 /* Responsiveness */

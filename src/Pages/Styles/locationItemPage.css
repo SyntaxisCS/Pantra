@@ -26,7 +26,7 @@
 }
 
 /* Dark Theme */
-.locationItemPage {
+.locationItemPage.darkTheme {
     color: var(--darkText);
     background-color: var(--darkBackground);
 }
