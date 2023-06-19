@@ -15,6 +15,8 @@ export const AddItemModal = ({isOpen, onClose, onAddItem}) => {
     const [selectedExpiry, setSelectedExpiry] = React.useState("");
     const [selectedCount, setSelectedCount] = React.useState(0);
 
+    const [errorMessage, setErrorMessage] = React.useState("");
+
     // Functions
     const handleBrandChange = (event) => {
         setSelectedBrand(event.target.value);
@@ -36,18 +38,37 @@ export const AddItemModal = ({isOpen, onClose, onAddItem}) => {
         setSelectedCount(event.target.value);
     };
 
-    const handleAddItem = () => {
-        const newItem = {
-            brand: selectedBrand === "" ? null : selectedBrand,
-            name: selectedName,
-            description: selectedDescription === "" ? null : selectedDescription,
-            expiry: selectedExpiry === "" ? null : selectedExpiry,
-            count: 1,
-            dateAdded: new Date()
-        };
+    const checkInputs = () => {
+        if (selectedName.trim() === "") {
+            setErrorMessage("A name is required");
+            return false;
+        }
 
-        onAddItem(newItem);
-        resetFields();
+        if (selectedCount <= 0) {
+            setErrorMessage("Quantity must be greater than 0");
+            return false;
+        }
+
+        setErrorMessage("");
+        return true;
+    };
+
+    const handleAddItem = () => {
+        const inputsValid = checkInputs();
+
+        if (inputsValid) {
+            const newItem = {
+                brand: selectedBrand === "" ? null : selectedBrand,
+                name: selectedName,
+                description: selectedDescription === "" ? null : selectedDescription,
+                expiry: selectedExpiry === "" ? null : selectedExpiry,
+                count: selectedCount,
+                dateAdded: new Date(),
+            };
+
+            onAddItem(newItem);
+            resetFields();
+        }
     };
 
     const resetFields = () => {
@@ -57,6 +78,8 @@ export const AddItemModal = ({isOpen, onClose, onAddItem}) => {
         setSelectedDescription("");
         setSelectedExpiry("");
         setSelectedCount(0);
+        
+        setErrorMessage("");
     };
 
     return (
@@ -80,6 +103,8 @@ export const AddItemModal = ({isOpen, onClose, onAddItem}) => {
 
                 <label htmlFor="countInput">* Quantity</label>
                 <input type="number" id="countInput" defaultValue={1} onChange={handleCountChange} placeholder="how many items would you like to add?"/>
+
+                {errorMessage && <p className="error">{errorMessage}</p>}
 
                 <p>{"Items without *'s are not required"}</p>
                 <button onClick={handleAddItem} className="addBtn">Add</button>

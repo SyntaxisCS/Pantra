@@ -17,6 +17,8 @@ export const AddCardModal = ({isOpen, onClose, onAddLocation}) => {
     const [selectedTitle, setSelectedTitle] = React.useState("");
     const [selectedDescription, setSelectedDescription] = React.useState("");
 
+    const [errorMessage, setErrorMessage] = React.useState("");
+
     // Functions
     const handleIconChange = (event) => {
         setSelectedIcon(event.target.value);
@@ -30,39 +32,57 @@ export const AddCardModal = ({isOpen, onClose, onAddLocation}) => {
         setSelectedDescription(event.target.value);
     };
 
-    const handleAddLocation = () => {
-        const newLocation = {
-            icon: selectedIcon,
-            title: selectedTitle,
-            description: selectedDescription
-        };
+    const checkInputs = () => {
+        if (selectedTitle.trim() === "") {
+            setErrorMessage("A name is required");
+            return false;
+        }
 
-        onAddLocation(newLocation);
+        setErrorMessage("");
+        return true;
+    }
+
+    const handleAddLocation = () => {
+        const inputsValid = checkInputs();
+
+        if (inputsValid) {
+            const newLocation = {
+                icon: selectedIcon,
+                title: selectedTitle,
+                description: selectedDescription
+            };
+
+            onAddLocation(newLocation);
+            resetFields();
+        }
+    };
+
+    const resetFields = () => {
+        // Reset all fields to default
         setSelectedIcon("");
         setSelectedTitle("");
         setSelectedDescription("");
-    };
+
+        setErrorMessage("");
+    }
 
     // Select bullshit
+    // Having to do this is so unbelieveably dumb that I cannot fathom why the creator
+    // even begun to think that this was actually a solution to styling this thing
+    // over normal css
     const customStyles = {
-        control: (provided) => ({
-          ...provided,
-          minWidth: "200px", // Adjust the width of the select control
-          outlineColor: "#8c00ff", // Set the outline color
+        control: (provided, {isFocused}) => ({
+            ...provided,
+            width: "100%",
+            minWidth: "200px", // Adjust the width of the select control
+            boxShadow: isFocused ? "none" : provided.boxShadow, // Remove the box shadow when focused
+            outline: isFocused ? "none" : provided.outline, // Remove the outline when focused
+            borderColor: isFocused ? "var(--primary)" : provided.borderColor, // Set the outline color
         }),
-        option: (provided, state) => ({
-          ...provided,
-          display: "flex",
-          alignItems: "center",
-          padding: "8px 16px",
-          cursor: "pointer",
-          flexDirection: "column",
-          backgroundColor: state.isSelected ? "#f0f0f0" : "transparent",
-        }),
-        icon: {
-          marginRight: "8px",
-          fontSize: "18px",
-        },
+        option: (provided, {isFocused}) => ({
+            ...provided,
+            borderColor: isFocused ? "none" : provided.borderColor, // Add a custom border color when focused
+        })
       };
 
     const IconOption = ({ children, innerProps }) => (
@@ -74,11 +94,11 @@ export const AddCardModal = ({isOpen, onClose, onAddLocation}) => {
     return (
         <div className={`addCardModal ${isOpen ? "show" : "hidden"} ${theme}`}>
             <div className="modal">
-                <i className="bx bx-x" onClick={onClose}/>
+                <div className="closeBtn"><i className="bx bx-x" onClick={onClose}/></div>
 
                 <h2>Add Location</h2>
-                <label htmlFor="iconSelct">Icon: </label>
-                <Select id="iconSelect" className="iconSelect" components={{Option: IconOption}} styles={customStyles} options={icons} value={icons.find((icon) => icon.value === selectedIcon)} onChange={(option) => setSelectedIcon(option.value)}/>
+                <label htmlFor="iconSelct">Icon</label>
+                <Select id="iconSelect" className="iconSelect" components={{Option: IconOption}} styles={customStyles} options={icons} value={icons.find((icon) => icon.value === selectedIcon)} onChange={(option) => setSelectedIcon(option.value)} isSearchable={false}/>
 
                 <label htmlFor="titleInput">Title</label>
                 <input type="text" id="titleInput" value={selectedTitle} onChange={handleTitleChange}/>

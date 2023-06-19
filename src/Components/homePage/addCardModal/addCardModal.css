@@ -24,6 +24,14 @@
 }
 
 .addCardModal.show .modal i {
+	padding: 0;
+	margin: auto;
+	font-size: 30px;
+	margin-bottom: 0;
+	transition: transform 0.50s;
+}
+
+.addCardModal.show .modal .closeBtn {
 	font-size: 30px;
 	padding: 0;
 	float: right;
@@ -56,10 +64,18 @@
 	caret-color: var(--primary);
 	box-sizing: border-box;
 	border: 1px solid #e2e2e2;
-	background-color: var(--lightBackgroundSecondary);
+	background-color: var(--lightBackground);
 	/* font */
 }
-  
+
+.addCardModal.show .modal .iconSelect {
+	width: 100%;
+}
+
+.addCardModal.show .modal .iconSelect div {
+	background-color: var(--lightBackground);
+}
+
 .addCardModal.show .modal .addBtn {
 	border: none;
 	float: right;
@@ -82,5 +98,14 @@
 
 /* Dark Theme */
 .addCardModal.show.darkTheme .modal {
+	background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
+}
+
+.addCardModal.show.darkTheme .modal .iconSelect div {
+	color: var(--darkText);
+	background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
+}
+
+.addCardModal.show.darkTheme .modal input {
 	background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
 }
