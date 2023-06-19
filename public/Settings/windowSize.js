@@ -4,7 +4,7 @@ const { getSetting, saveSetting } = require("../userDataStorage");
 const getWindowSettings = () => {
     const displaySize = screen.getPrimaryDisplay().bounds;
     let sizeX = displaySize.width * 0.55;
-    let sizeY = displaySize.height * 0.6;
+    let sizeY = (displaySize.height * 0.6) >= 630 ? displaySize.height * 0.6 : 630; // sizeY 60% of displaySize unless it is less than 630 px in which case set to 630 px
 
     const defaultSettings = [sizeX, sizeY];
 

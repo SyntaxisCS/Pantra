@@ -5,9 +5,9 @@ const isDev = require("electron-is-dev");
 
 const createWindow = () => {
 
-    const displaySize = screen.getPrimaryDisplay().bounds;
-    let minSizeX = 550; //parseInt((displaySize.width * 0.55).toFixed(0));
-    let minSizeY = 200; //parseInt((displaySize.height * 0.6).toFixed(0));
+    const displaySize = screen.getPrimaryDisplay().bounds;    
+    let minSizeX = 450;
+    let minSizeY = 630;
 
     const dimensions = appSettings.getWindowSettings();
 
