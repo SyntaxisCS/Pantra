@@ -2,7 +2,7 @@ const { ipcRenderer } = window.require("electron");
 
 
 // Settings
-const saveSetting = async (name, value) => {
+export const saveSetting = async (name, value) => {
     try {
         await ipcRenderer.invoke("userDataStorage_saveSetting", name, value);
     } catch (err) {
@@ -10,7 +10,7 @@ const saveSetting = async (name, value) => {
     }
 };
 
-const getSetting = async (name) => {
+export const getSetting = async (name) => {
     try {
         const setting = await ipcRenderer.invoke("userDataStorage_getSetting", name);
         return setting;
@@ -21,7 +21,7 @@ const getSetting = async (name) => {
 };
 
 // Data
-const getData = async () => {
+export const getData = async () => {
     try {
         const data = await ipcRenderer.invoke("userDataStorage_getData");
         return data;
@@ -31,7 +31,7 @@ const getData = async () => {
     }
 };
 
-const getLocations = async () => {
+export const getLocations = async () => {
     try {
         const locations = await ipcRenderer.invoke("userDataStorage_getLocations");
         return locations;
@@ -41,7 +41,7 @@ const getLocations = async () => {
     };
 };
 
-const getLocation = async (id) => {
+export const getLocation = async (id) => {
     try {
         const location = await ipcRenderer.invoke("userDataStorage_getLocation", id);
         return location;
@@ -51,7 +51,7 @@ const getLocation = async (id) => {
     }
 }
 
-const addLocation = async (location) => {
+export const addLocation = async (location) => {
     try {
         await ipcRenderer.invoke("userDataStorage_addLocation", location);
     } catch (err) {
@@ -59,7 +59,7 @@ const addLocation = async (location) => {
     }
 };
 
-const modifyLocation = async (id, newData) => {
+export const modifyLocation = async (id, newData) => {
     try {
         await ipcRenderer.invoke("userDataStorage_modifyLocation", id, newData);
     } catch (err) {
@@ -67,7 +67,7 @@ const modifyLocation = async (id, newData) => {
     }
 };
 
-const deleteLocation = async (id) => {
+export const deleteLocation = async (id) => {
     try {
         await ipcRenderer.invoke("userDataStorage_deleteLocation", id);
     } catch (err) {
@@ -75,7 +75,7 @@ const deleteLocation = async (id) => {
     }
 };
 
-const getItems = async (locationId) => {
+export const getItems = async (locationId) => {
     try {
         const items = await ipcRenderer.invoke("userDataStorage_getItems", locationId);
         return items;
@@ -85,7 +85,7 @@ const getItems = async (locationId) => {
     }
 };
 
-const getItem = async (locationId, name) => {
+export const getItem = async (locationId, name) => {
     try {
         const item = await ipcRenderer.invoke("userDataStorage_getItem", locationId, name);
         return item;
@@ -95,7 +95,7 @@ const getItem = async (locationId, name) => {
     }
 };
 
-const addItem = async (locationId, item) => {
+export const addItem = async (locationId, item) => {
     try {
         await ipcRenderer.invoke("userDataStorage_addItem", locationId, item);
     } catch (err) {
@@ -103,7 +103,7 @@ const addItem = async (locationId, item) => {
     }
 };
 
-const modifyItem = async (locationId, newData) => {
+export const modifyItem = async (locationId, newData) => {
     try {
         await ipcRenderer.invoke("userDataStorage_modifyItem", locationId, newData);
     } catch (err) {
@@ -111,30 +111,10 @@ const modifyItem = async (locationId, newData) => {
     }
 };
 
-const deleteItem = async (locationId, itemName) => {
+export const deleteItem = async (locationId, itemName) => {
     try {
         await ipcRenderer.invoke("userDataStorage_deleteItem", locationId, itemName);
     } catch (err) {
         console.error(`Error deleting item (${itemName}) for location (${locationId}): ${err}`);
     }
 };
-
-module.exports = {
-    // Setting
-    saveSetting,
-    getSetting,
-
-    // Data
-    getData,
-    getLocations,
-    getLocation,
-    addLocation,
-    modifyLocation,
-    deleteLocation,
-    // Items
-    getItems,
-    getItem,
-    addItem,
-    modifyItem,
-    deleteItem,
-}
