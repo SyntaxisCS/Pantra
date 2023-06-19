@@ -1,6 +1,8 @@
 import React from "react";
 
 // Utils
+import pantraLight from "../../../Assets/Images/pantraHorizontalLight.svg";
+import pantraDark from "../../../Assets/Images/pantraHorizontalDark.svg";
 import { useTheme } from "../../../Utils/Themes/theme";
 import "./aboutSettings.css";
 
@@ -11,8 +13,8 @@ export const AboutSettings = (props) => {
     return (
         <div className={`aboutSettings ${theme}`}>
             <div className="header">
-                <h1>Pantra</h1>
-                <p className="version">Version 0.0.34</p>
+                <div className="logo"><img src={theme === "lightTheme" ? pantraLight : pantraDark}/></div>
+                <p className="version">Version 0.1.0</p>
             </div>
 
             <div className="specialThanks">

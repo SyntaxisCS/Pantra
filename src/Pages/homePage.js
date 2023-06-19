@@ -1,10 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router";
 
-// Utils
-import "./Styles/homePage.css";
+// Components
 import { LocationCardList } from "../Components/homePage/LocationCardList/locationCardList";
+import pantraLight from "../Assets/Images/pantraHorizontalLight.svg";
+import pantraDark from "../Assets/Images/pantraHorizontalDark.svg";
+
+// Utils
 import { useTheme } from "../Utils/Themes/theme";
+import "./Styles/homePage.css";
 
 export const HomePage = (props) => {
     // Utils
@@ -18,7 +22,7 @@ export const HomePage = (props) => {
 
     return (
         <div className={`homePage ${theme}`}>
-            <h1 className="logo">Pantra</h1>
+            <div className="logo"><img src={theme === "lightTheme" ? pantraLight : pantraDark}/></div>
 
             <div className="settingsButton" onClick={handleSettingsClick}>
                 <i className="bx bx-cog"/><span>Settings</span>
