@@ -1,6 +1,6 @@
 {
   "name": "pantra",
-  "version": "0.1.1",
+  "version": "0.1.1a",
   "description": "Kitchen food stock manager",
   "author": "Charles Stello",
   "main": "public/electron.js",
@@ -8,7 +8,6 @@
   "private": true,
   "dependencies": {
     "axios": "^1.4.0",
-    "electron-is-dev": "^2.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -21,10 +20,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "dev": "concurrently -k \"set BROWSER=none&&npm start\" \"npm run electron\"",
-    "electron": "wait-on tcp:127.0.0.1:3000 && electron-forge start",
-    "package": "react-scripts build && electron-forge package",
-    "make": "react-scripts build && electron-forge make",
-    "make-all": "react-scripts build && electron-forge make --platform=win32 --platform=darwin --platform=linux"
+    "electron": "wait-on tcp:127.0.0.1:3000 && electron .",
+    "package": "react-scripts build && electron-builder",
+    "make": "react-scripts build && electron-builder",
+    "make-all": "react-scripts build && electron-builder"
   },
   "browserslist": {
     "production": [
@@ -39,15 +38,36 @@
     ]
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.1.1",
-    "@electron-forge/maker-deb": "^6.1.1",
-    "@electron-forge/maker-dmg": "^6.1.1",
-    "@electron-forge/maker-rpm": "^6.1.1",
-    "@electron-forge/maker-squirrel": "^6.1.1",
-    "@electron-forge/maker-zip": "^6.1.1",
-    "concurrently": "^8.1.0",
     "electron": "^25.0.1",
-    "electron-devtools-installer": "^3.2.0",
-    "wait-on": "^7.0.1"
+    "electron-builder": "^24.4.0"
+  },
+  "build": {
+    "appId": "com.syntaxiscs.pantra",
+    "productName": "Pantra",
+    "directories": {
+      "output": "out"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/*/*",
+      "!src/*",
+      "!public/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "./public/Assets/Images/favicon.ico",
+      "publisherName": "Charles Stello"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "rpm"
+    },
+    "nsis": {
+        "oneClick": false,
+        "license": "LICENSE.txt",
+        "allowToChangeInstallationDirectory": true
+    }
   }
 }
