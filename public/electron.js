@@ -1,6 +1,7 @@
 const {app, screen, BrowserWindow} = require("electron");
 const appSettings = require("./settings");
 const path = require("path");
+const isDev = require("electron-is-dev");
 
 const createWindow = () => {
 
@@ -38,7 +39,9 @@ const createWindow = () => {
     );
     
     // Dev Tools
-    // mainWindow.webContents.openDevTools({mode: "detach"});
+    if (isDev) {
+        mainWindow.webContents.openDevTools({mode: "detach"});
+    }
 
     if (require("electron-squirrel-startup")) {
         app.quit();

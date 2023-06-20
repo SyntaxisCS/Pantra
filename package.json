@@ -1,6 +1,6 @@
 {
   "name": "pantra",
-  "version": "0.1.1a",
+  "version": "0.1.1b",
   "description": "Kitchen food stock manager",
   "author": "Charles Stello",
   "main": "public/electron.js",
@@ -8,6 +8,7 @@
   "private": true,
   "dependencies": {
     "axios": "^1.4.0",
+    "electron-is-dev": "^2.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -38,8 +39,10 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^8.2.0",
     "electron": "^25.0.1",
-    "electron-builder": "^24.4.0"
+    "electron-builder": "^24.4.0",
+    "wait-on": "^7.0.1"
   },
   "build": {
     "appId": "com.syntaxiscs.pantra",
@@ -65,9 +68,9 @@
       "target": "rpm"
     },
     "nsis": {
-        "oneClick": false,
-        "license": "LICENSE.txt",
-        "allowToChangeInstallationDirectory": true
+      "oneClick": false,
+      "license": "LICENSE.txt",
+      "allowToChangeInstallationDirectory": true
     }
   }
 }
