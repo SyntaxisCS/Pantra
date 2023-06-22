@@ -33,6 +33,35 @@
     color: var(--primary);
 }
 
+.homePage .shoppingListButton {
+    width: 100%;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.homePage .shoppingListButton .shopListBtn {
+    border: none;
+    margin: 3px 0;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    color: var(--darkText);
+    transition: all 0.5s;
+    background-color: var(--primary);
+}
+
+.homePage .shoppingListButton .shopListBtn i {
+    font-size: 25px;
+}
+
+.homePage .shoppingListButton .shopListBtn:hover {
+    transform: translateY(-5px);
+    box-shadow: 1px 1px 20px 5px var(--accent);
+}
+
 /* Dark Theme */
 .homePage.darkTheme {
     color: var(--darkText);

@@ -1,0 +1,38 @@
+.shoppingListPage {
+    min-height: 100vh;
+    height: fit-content;
+    color: var(--lightText);
+    background-color: var(--lightBackground);
+}
+
+.shoppingListPage .logo {
+    width: 200px;
+    padding-top: 1em;
+    margin: 0 0 1em 0.5em;
+}
+
+.shoppingListPage .backBtn {
+    top: 4em;
+    left: 1em;
+    cursor: pointer;
+    position: absolute;
+}
+
+.shoppingListPage .backBtn:hover {
+    color: var(--primary);
+}
+
+.shoppingListPage .backBtn i {
+    font-size: 20px;
+}
+
+.shoppingListPage .backBtn span {
+    margin-left: 0.5em;
+    font-size: 20px;
+}
+
+/* Dark Theme */
+.shoppingListPage.darkTheme {
+    color: var(--darkText);
+    background-color: var(--darkBackground);
+}

@@ -6,6 +6,7 @@ import { useTheme } from "../../Utils/Themes/theme";
 import { addItem, deleteItem, getLocation, modifyItem } from "../../Utils/Storage/storage";
 import { AddItemModal } from "./addItemModal/addItemModal";
 import "./itemList.css";
+import { checkItemMinimums } from "../../Utils/Storage/minimumShoppingListHandler";
 
 export const ItemList = (props) => {
     // Utils
@@ -42,6 +43,9 @@ export const ItemList = (props) => {
                 // Add to count
                 newItemArray[itemIndex].count++;
 
+                // minimumShoppingHandler
+                checkItemMinimums(newItemArray[itemIndex]);
+
                 // set new state
                 setItems(newItemArray);
 
@@ -59,8 +63,16 @@ export const ItemList = (props) => {
             const itemIndex = newItemArray.findIndex((item) => item.name === itemName);
 
             if (itemIndex !== -1) {
-                // Add to count
+                // subtract from count
                 newItemArray[itemIndex].count--;
+                
+                // item counts cannot be less than 0
+                if (newItemArray[itemIndex].count < 0) {
+                    newItemArray[itemIndex].count = 0;
+                }
+
+                // minimumShoppingHandler
+                checkItemMinimums(newItemArray[itemIndex]);
 
                 // set new state
                 setItems(newItemArray);
@@ -75,6 +87,9 @@ export const ItemList = (props) => {
 
     const handleDeleteItem = (itemName) => {
         if (props.location && itemName) {
+            // minimumShoppingHandler
+            checkItemMinimums(newItemArray[itemIndex].name);
+
             deleteItem(props.location, itemName);
             getInitialItems();
         } else {
@@ -124,6 +139,7 @@ export const ItemList = (props) => {
 
                             <div className="itemCountContainer">
                                 <button className="minusButton" onClick={() => handleItemCountSub(item.name)}>-</button>
+                                {item.requiredCount > 0 ? <p className="requiredCount">{`${item.requiredCount}/`}</p> : <p/>}
                                 <p className="itemCount">{item.count}</p>
                                 <button className="plusButton" onClick={() => handleItemCountAdd(item.name)}>+</button>
                             </div>

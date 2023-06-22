@@ -139,7 +139,7 @@
 
 .itemList .item .deleteButtonWrapper .deleteBtn:hover {
     transition: all 0.5s;
-    box-shadow: 1px 1px 20px 5px rgba(140,0,255,0.34);;
+    box-shadow: 1px 1px 20px 5px rgba(140,0,255,0.34);
 }
 
 .itemList .item:hover .deleteBtn {
