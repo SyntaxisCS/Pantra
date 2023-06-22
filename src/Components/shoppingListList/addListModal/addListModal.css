@@ -1,0 +1,99 @@
+.addListModal.show {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    overflow: scroll;
+    overflow-x: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.addListModal.show::-webkit-scrollbar {
+    display: none;
+}
+
+.addListModal.hidden {
+    display: none;
+}
+
+.addListModal.show .modal {
+    padding: 20px;
+    max-width: 400px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.addListModal.show .modal i {
+    font-size: 30px;
+    padding: 0;
+    float: right;
+    margin-bottom: 2em;
+    transition: transform 0.5s;
+}
+
+.addListModal.show .modal i:hover {
+    transform: rotate(360deg);
+}
+
+.addListModal.show .modal h2 {
+    margin-top: 0;
+}
+
+.addListModal.show .modal label {
+    display: block;
+    margin-top: 10px;
+}
+
+.addListModal.show .modal input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    outline: none;
+    display: block;
+    color: var(--lightText);
+    font-size: 16px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid #e2e2e2;
+    caret-color: var(--primary);
+    background-color: var(--lightBackground);
+}
+
+.addListModal.show .modal .error {
+    color: var(--errorText);
+}
+
+.addListModal.show .modal .addBtn {
+    border: none;
+    float: right;
+    margin: 3px 0;
+    font-size: 17px;
+    margin-top: 1em;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    color: var(--darkText);
+    background-color: var(--primary);
+}
+
+.addListModal.show .modal .addBtn:hover {
+    background-color: var(--accent);
+}
+
+/* Dark Theme */
+.addListModal.show.darkTheme .modal {
+    background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
+}
+
+.addListModal.show.darkTheme .modal input {
+    color: var(--darkText);
+    background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
+}

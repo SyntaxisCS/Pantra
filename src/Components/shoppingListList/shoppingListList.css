@@ -1,0 +1,163 @@
+.shoppingListList {
+    width: 50%;
+    margin: auto;
+    padding-top: 5em;
+}
+
+.shoppingListList .header {
+    width: 100%;
+    display: flex;
+    min-height: 40px;
+    height: fit-content;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shoppingListList .header .addBtn {
+    border: none;
+    margin: auto;
+    font-size: 17px;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    transition: all 0.5s;
+    color: var(--darkText);
+    background-color: var(--primary);
+}
+
+.shoppingListList .header .addBtn:hover {
+    transform: translateY(-5px);
+    box-shadow: 1px 1px 20px 5px var(--accent);
+}
+
+.shoppingListList .minimumShoppingListContainer .shoppingListContainer {
+    display: flex;
+    padding: 20px;
+    min-height: 50px;
+    margin-top: 1.5em;
+    position: relative;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    transition: all 0.5s;
+    justify-content: center;
+    background-color: color-mix(in srgb, white 95%, var(--lightBackground) 5%);
+}
+
+.shoppingListList .minimumShoppingListContainer .shoppingListContainer:hover {
+    transform: translateY(-5px);
+    box-shadow: 1px 1px 20px 5px var(--accent);
+}
+
+.shoppingListList .minimumShoppingListContainer .shoppingListContainer .title {
+    margin: 0;
+    left: 0.6em;
+    font-size: 20px;
+    position: absolute;
+}
+
+.shoppingListList .minimumShoppingListContainer .shoppingListContainer .explanation {
+    margin: 0;
+    left: 1em;
+    bottom: 0.5em;
+    font-size: 12.5px;
+    position: absolute;
+    color: color-mix(in srgb, white 60%, var(--lightText) 40%);
+}
+
+.shoppingListList .minimumShoppingListContainer .shoppingListContainer .numOfItems {
+    margin: 0;
+    right: 2.75em;
+    font-size: 20px;
+    position: absolute;
+}
+
+.shoppingListList .minimumShoppingListContainer .shoppingListContainer i {
+    right: 0.5em;
+    font-size: 30px;
+    border-radius: 5px;
+    position: absolute;
+}
+
+.shoppingListList hr {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.shoppingListList .shoppingListContainer {
+    height: fit-content;
+}
+
+.shoppingListList .shoppingListContainer .list {
+    display: flex;
+    padding: 20px;
+    min-height: 50px;
+    margin-top: 1.5em;
+    position: relative;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    transition: all 0.5s;
+    justify-content: center;
+    background-color: color-mix(in srgb, white 95%, var(--lightBackground) 5%);
+}
+
+.shoppingListList .shoppingListContainer .list:hover {
+    transform: translateY(-5px);
+    box-shadow: 1px 1px 20px 5px var(--accent);
+}
+
+.shoppingListList .shoppingListContainer .title {
+    margin: 0;
+    left: 0.6em;
+    font-size: 20px;
+    position: absolute;
+}
+
+.shoppingListList .shoppingListContainer .lastUsed {
+    margin: 0;
+    left: 1em;
+    bottom: 0.75em;
+    font-size: 12.5px;
+    position: absolute;
+    color: color-mix(in srgb, white 60%, var(--lightText) 40%);
+}
+
+.shoppingListList .shoppingListContainer .numOfItems {
+    margin: 0;
+    right: 2.75em;
+    font-size: 20px;
+    position: absolute;
+}
+
+.shoppingListList .shoppingListContainer i {
+    right: 0.5em;
+    font-size: 30px;
+    border-radius: 5px;
+    position: absolute;
+}
+
+.shoppingListList .shoppingListContainer i:hover {
+    background-color: color-mix(in srgb, black 10%, var(--lightBackground) 90%);
+}
+
+/* Dark Theme */
+.shoppingListList.darkTheme .minimumShoppingListContainer .shoppingListContainer {
+    background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
+}
+
+.shoppingListList.darkTheme .shoppingListContainer .list {
+    background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
+}
+
+
+.shoppingListList.darkTheme .shoppingListContainer i:hover {
+    background-color: color-mix(in srgb, black 90%, var(--darkBackground) 10%);
+}

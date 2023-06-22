@@ -31,6 +31,8 @@ export const getData = async () => {
     }
 };
 
+// Locations
+
 export const getLocations = async () => {
     try {
         const locations = await ipcRenderer.invoke("userDataStorage_getLocations");
@@ -75,6 +77,8 @@ export const deleteLocation = async (id) => {
     }
 };
 
+// Items
+
 export const getItems = async (locationId) => {
     try {
         const items = await ipcRenderer.invoke("userDataStorage_getItems", locationId);
@@ -116,5 +120,61 @@ export const deleteItem = async (locationId, itemName) => {
         await ipcRenderer.invoke("userDataStorage_deleteItem", locationId, itemName);
     } catch (err) {
         console.error(`Error deleting item (${itemName}) for location (${locationId}): ${err}`);
+    }
+};
+
+// Shopping Lists
+
+export const getMinimumShoppingList = async () => {
+    try {
+        const list = await ipcRenderer.invoke("userDataStorage_getMinimumShoppingList");
+        return list;
+    } catch (err) {
+        console.error(`Error getting minimum shopping list: ${err}`);
+        return null;
+    }
+};
+
+export const getShoppingLists = async () => {
+    try {
+        const lists = await ipcRenderer.invoke("userDataStorage_getShoppingLists");
+        return lists;
+    } catch (err) {
+        console.error(`Error getting shopping lists: ${err}`);
+        return null;
+    }
+};
+
+export const getShoppingList = async (id) => {
+    try {
+        const list = await ipcRenderer.invoke("userDataStorage_getShoppingList", id);
+        return list;
+    } catch (err) {
+        console.error(`Error getting shopping list ${id}: ${err}`);
+        return null;
+    }
+};
+
+export const addShoppingList = async (shoppingList) => {
+    try {
+        await ipcRenderer.invoke("userDataStorage_addShoppingList", shoppingList);
+    } catch (err) {
+        console.error(`Error adding shopping list ${shoppingList}: ${err}`);
+    }
+};
+
+export const modifyShoppingList = async (id, newData) => {
+    try {
+        await ipcRenderer.invoke("userDataStorage_modifyShoppingList", id, newData);
+    } catch (err) {
+        console.error(`Error modify shopping list ${id} with data ${newData}: ${err}`);
+    }
+};
+
+export const deleteShoppingList = async (id) => {
+    try {
+        await ipcRenderer.invoke("userDataStorage_deleteShoppingList", id);
+    } catch (err) {
+        console.error(`Error deleting shopping list ${id}: ${err}`);
     }
 };

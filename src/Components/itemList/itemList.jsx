@@ -124,6 +124,7 @@ export const ItemList = (props) => {
 
                             <div className="itemCountContainer">
                                 <button className="minusButton" onClick={() => handleItemCountSub(item.name)}>-</button>
+                                {item.requiredCount > 0 ? <p className="requiredCount">{`${item.requiredCount}/`}</p> : <p/>}
                                 <p className="itemCount">{item.count}</p>
                                 <button className="plusButton" onClick={() => handleItemCountAdd(item.name)}>+</button>
                             </div>

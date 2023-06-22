@@ -4,7 +4,6 @@ const path = require("path");
 const crypto = require("crypto");
 
 const userDataPath = app.getPath("userData");
-console.log(userDataPath);
 
 // File Paths
 const settingsFilePath = path.join(userDataPath, "settings.json"); // Electron app settings (window bounds)
@@ -18,7 +17,11 @@ const createFileIfNotExists = (filePath, defaultContent) => {
             
             // Change if needed
             const dataFileStructure = {
-                "locations": []
+                "locations": [],
+                "minShoppingList": {
+                    "items": []
+                },
+                "shoppingLists": []
             }
 
             fs.writeFileSync(filePath, JSON.stringify(dataFileStructure, null, 2));
@@ -324,6 +327,133 @@ const deleteItem = (locationId, itemName) => {
     }
 };
 
+// Shopping Lists
+const getMinimumShoppingList = () => {
+    // get data file - get minimums shopping list from data file
+    const minimumList = readFile(dataFilePath)["minShoppingList"];
+
+    if (minimumList) {
+        return minimumList;
+    } else {
+        return null;
+    }
+};
+
+const getShoppingLists = () => {
+    // get data file - get shopping lists from data file
+    const shoppingLists = readFile(dataFilePath)["shoppingLists"];
+
+    if (shoppingLists) {
+        return shoppingLists;
+    } else {
+        return null;
+    }
+};
+
+const getShoppingList = (id) => {
+    // get data file - get shopping list by id from data file
+    if (id) {
+        const shoppingLists = readFile(dataFilePath)["shoppingLists"];
+        const shoppingList = shoppingLists.find((list) => list.id === id);
+        return shoppingList;
+    } else {
+        console.warn(`userDataStorage.js - getShoppingList(${id}): No id provided`);
+        return null;
+    }
+};
+
+const addShoppingList = (shoppingList) => {
+    if (shoppingList) {
+        let id = crypto.randomBytes(8).toString("hex");
+        let date = new Date();
+
+        // Default structure
+        shoppingList["id"] = id;
+        shoppingList["items"] = [];
+        shoppingList["dateAdded"] = date;
+        shoppingList["timesUsed"] = 0;
+        shoppingList["lastUsed"] = date;
+        ///////////////////////
+
+        // Get data file - get shopping lists
+        const dataFile = readFile(dataFilePath);
+        const shoppingLists = dataFile["shoppingLists"];
+
+        if (shoppingLists) {
+            const newShoppingLists = [...shoppingLists, shoppingList];
+
+            // replace shopping lists with newShoppingLists and then write to file
+            dataFile["shoppingLists"] = newShoppingLists;
+
+            // save file
+            writeFile(dataFilePath, dataFile);
+        } else {
+            console.warn(`userDataStorage.js - addShoppingList(${shoppingList}): Unable to get shopping lists from file`);
+        }
+    } else {
+        console.warn(`userDataStorage.js - addShoppingList(${shoppingList}): No shopping list provided`);
+    }
+};
+
+const modifyShoppingList = (id, newData) => {
+    if (id && newData) {
+        
+        // Get data file - get shopping lists
+        const dataFile = readFile(dataFilePath);
+        const shoppingLists = dataFile["shoppingLists"];
+
+        if (shoppingLists) {
+            const listIndex = shoppingLists.findIndex((list) => list.id === id);
+
+            if (listIndex !== -1) {
+                const updatedList = [
+                    ...shoppingLists.slice(0, listIndex),
+                    newData,
+                    ...shoppingLists.slice(listIndex+1)
+                ];
+
+                dataFile["shoppingLists"] = updatedList;
+                writeFile(dataFilePath, dataFile);
+            } else {
+                console.warn(`userDataStorage.js - modifyShoppingLists(${id}, ${newData}): No shopping list with that id found`);
+            }
+        } else {
+            console.warn(`userDataStorage.js - modifyShoppingLists(${id}, ${newData}): No shopping lists found`);
+        }
+    } else {
+        console.warn(`userDataStorage.js - modifyShoppingList(${id}, ${newData}): Missing fields`);
+    }
+};
+
+const deleteShoppingList = (id) => {
+    if (id) {
+
+        // Get data file - get shopping lists
+        const dataFile = readFile(dataFilePath);
+        const shoppingLists = dataFile["shoppingLists"];
+
+        if (shoppingLists) {
+            const listIndex = shoppingLists.findIndex(list => list.id === id);
+
+            if (listIndex !== -1) {
+                const updatedList = [
+                    ...shoppingLists.slice(0, listIndex),
+                    ...shoppingLists.slice(listIndex+1)
+                ];
+
+                dataFile["shoppingLists"] = updatedList;
+                writeFile(dataFilePath, dataFile);
+            } else {
+                console.warn(`userDataStorage.js - deleteLocation(${id}): no shopping list with that id found`);
+            }
+        } else {
+            console.warn(`userDataStorage.js - deleteShoppingList(${id}): No shopping lists found`);
+        }
+    } else {
+        console.warn(`userDataStorage.js - deleteShoppingList(${id}): Missing id`);
+    }
+};
+
 //---------------------------------------------------------------
 
 // Expose IPC Methods
@@ -374,6 +504,8 @@ ipcMain.handle("userDataStorage_deleteLocation", (_, id) => {
     deleteLocation(id);
 });
 
+//  Items
+
 ipcMain.handle("userDataStorage_getItems", (_, locationId) => {
     return getItems(locationId);
 });
@@ -392,6 +524,32 @@ ipcMain.handle("userDataStorage_modifyItem", (_, locationId, newData) => {
 
 ipcMain.handle("userDataStorage_deleteItem", (_, locationId, itemName) => {
     deleteItem(locationId, itemName);
+});
+
+// Shopping Lists
+
+ipcMain.handle("userDataStorage_getMinimumShoppingList", () => {
+    return getMinimumShoppingList();
+});
+
+ipcMain.handle("userDataStorage_getShoppingLists", () => {
+    return getShoppingLists();
+});
+
+ipcMain.handle("userDataStorage_getShoppingList", (_, id) => {
+    return getShoppingList(id);
+});
+
+ipcMain.handle("userDataStorage_addShoppingList", (_, shoppingList) => {
+    addShoppingList(shoppingList);
+});
+
+ipcMain.handle("userDataStorage_modifyShoppingList", (_, id, newData) => {
+    modifyShoppingList(id, newData);
+});
+
+ipcMain.handle("userDataStorage_deleteShoppingList", (_, id) => {
+    deleteShoppingList(id);
 });
 
 module.exports = {
@@ -426,4 +584,12 @@ module.exports = {
     addItem,
     modifyItem,
     deleteItem,
+
+    // Shopping Lists
+    getMinimumShoppingList,
+    getShoppingLists,
+    getShoppingList,
+    addShoppingList,
+    modifyShoppingList,
+    deleteShoppingList,
 }
