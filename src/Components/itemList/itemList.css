@@ -106,7 +106,8 @@
     right: -1.5em;
 }
 
-.itemList .item .itemCount {
+.itemList .item .itemCount,
+.itemList .item .requiredCount {
     font-size: 25px;
     padding: 2px 6px;
     font-weight: 600;
@@ -144,4 +145,10 @@
 .itemList .item:hover .deleteBtn {
     opacity: 1;
     transform: translateX(0.75em);
+}
+
+/* Dark Theme */
+.itemList.darkTheme .item .itemCount,
+.itemList.darkTheme .item .requiredCount {
+    color: var(--darkText);
 }

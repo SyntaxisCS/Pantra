@@ -61,7 +61,7 @@
     box-sizing: border-box;
     border: 1px solid #e2e2e2;
     caret-color: var(--primary);
-    background-color: var(--lightBackgroundSecondary);
+    background-color: var(--lightBackground);
 }
 
 .addItemModal.show .modal input[type="datetime-local"] {
@@ -77,7 +77,7 @@
     box-sizing: border-box;
     border: 1px solid #e2e2e2;
     caret-color: var(--primary);
-    background-color: var(--lightBackgroundSecondary);
+    background-color: var(--lightBackground);
   
     /* Additional styles specific to datetime-local input */
     /* Adjust as needed */
@@ -85,7 +85,7 @@
 }
 
 .addItemModal.show .modal .error {
-    color: var(--errorText)
+    color: var(--errorText);
 }
 
 .addItemModal.show .modal .addBtn {
@@ -115,4 +115,5 @@
 
 .addItemModal.show.darkTheme .modal input {
     color: var(--darkText);
+    background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
 }
