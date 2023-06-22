@@ -609,6 +609,7 @@ module.exports = {
 
     // Shopping Lists
     getMinimumShoppingList,
+    modifyMinimumShoppingList,
     getShoppingLists,
     getShoppingList,
     addShoppingList,
