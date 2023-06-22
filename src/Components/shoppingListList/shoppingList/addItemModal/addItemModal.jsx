@@ -4,7 +4,7 @@ import React from "react";
 import { useTheme } from "../../../../Utils/Themes/theme";
 import "./addItemModal.css";
 
-export const addItemModal = ({isOpen, onClose, onAddItem}) => {
+export const AddItemModal = ({isOpen, onClose, onAddItem}) => {
     // Utils
     const theme = useTheme().theme;
 
@@ -16,6 +16,56 @@ export const addItemModal = ({isOpen, onClose, onAddItem}) => {
     const [errorMessage, setErrorMessage] = React.useState("");
 
     // Functions
+    const handleNameChange = (event) => {
+        setSelectedName(event.target.value);
+    };
+
+    const handleBrandChange = (event) => {
+        setSelectedBrand(event.target.value);
+    };
+
+    const handleNumberChange = (event) => {
+        setSelectedNumber(event.target.value);
+    };
+
+    const checkInputs = () => {
+        if (selectedName.trim() === "") {
+            setErrorMessage("A name is required");
+            return false;
+        }
+
+        if (selectedNumber <= 0) {
+            setErrorMessage("The number of items must be greater than 0");
+            return false;
+        }
+
+        setErrorMessage("");
+        return true;
+    };
+
+    const handleAddItem = () => {
+        const inputsValid = checkInputs();
+
+        if (inputsValid) {
+            const newItem = {
+                name: selectedName,
+                brand: selectedBrand !== "" ? selectedBrand : null,
+                number: selectedNumber,
+                checked: false
+            }
+
+            onAddItem(newItem);
+            resetFields();
+        }
+    };
+
+    const resetFields = () => {
+        // Reset all fields to default
+        setSelectedName("");
+        setSelectedBrand("");
+        setSelectedNumber(0);
+        setErrorMessage("");
+    };
 
     return (
         <div className={`addItemModal ${isOpen ? "show" : "hidden"} ${theme}`}>
@@ -24,18 +74,20 @@ export const addItemModal = ({isOpen, onClose, onAddItem}) => {
 
                 <h2>Add item to list</h2>
 
-                <label htmlFor="nameInput">Name</label>
-                <input type="text" id="nameInput"/>
+                <label htmlFor="nameInput">* Name</label>
+                <input type="text" id="nameInput" value={selectedName} onChange={handleNameChange}/>
 
                 <label htmlFor="brandInput">Brand</label>
-                <input type="text" id="brandInput"/>
+                <input type="text" id="brandInput" value={selectedBrand} onChange={handleBrandChange}/>
 
-                <label htmlFor="numberInput">Number</label>
-                <input type="number" id="numberInput"/>
+                <label htmlFor="numberInput">* Number</label>
+                <input type="number" id="numberInput" value={selectedNumber} onChange={handleNumberChange}/>
 
                 {errorMessage && <p className="error">{errorMessage}</p>}
 
-                <button onClick={} className="addBtn">Add</button>
+                <p>Items with *'s are required</p>
+
+                <button onClick={handleAddItem} className="addBtn">Add</button>
             </div>
         </div>
     )

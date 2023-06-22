@@ -10,6 +10,91 @@
     min-height: 40px;
     align-items: center;
     height: fit-content;
+    justify-content: space-between;
+}
+
+.shoppingList .header span {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.shoppingList .header .addBtn {
+    border: none;
+    float: right;
+    margin: 3px 0;
+    font-size: 17px;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    color: var(--darkText);
+    transition: all 0.5s;
+    background-color: var(--primary);
+}
+
+.shoppingList .header .addBtn:hover {
+    transform: translateY(-5px);
+    box-shadow: 1px 1px 20px 5px var(--accent);
+}
+
+.shoppingList .itemListContainer {
+    width: 100%;
+    font-size: 18px;
+    cursor: default;
+    padding-top: 10px;
+    position: relative;
+}
+
+.shoppingList .itemListContainer .item {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shoppingList .itemListContainer .item p {
+    margin: 0;
+    padding: 0;
+}
+
+.shoppingList .itemListContainer .itemBrand {
+    font-size: 16px;
+    color: color-mix(in srgb, white 60%, var(--lightText) 40%);
+}
+
+.shoppingList .itemListContainer .item .itemCount {
+    font-size: 25px;
+    padding: 2px 6px;
+    font-weight: 600;
+    color: var(--lightText);
+}
+
+.shoppingList .itemListContainer .item input[type="checkbox"] {
+    appearance: none;
+    margin: 0;
+    color: var(--lightText);
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 5px;
+    display: grid;
+    place-content: center;
+    border: 0.15em solid var(--lightText);
+}
+
+.shoppingList .itemListContainer .item input[type="checkbox"]::before {
+    content: "";
+    width: 0.75em;
+    height: 0.75em;
+    transform: scale(0);
+    transition: 0.1s transform ease-in-out;
+    box-shadow: inset 1em 1em var(--primary);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.shoppingList .itemListContainer .item input[type="checkbox"]:checked::before {
+    transform: scale(1);
 }
 
 .shoppingList .minimumsExplanation {

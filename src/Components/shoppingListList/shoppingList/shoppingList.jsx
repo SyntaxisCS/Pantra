@@ -4,6 +4,7 @@ import React from "react";
 import { getMinimumShoppingList, getShoppingList, modifyMinimumShoppingList, modifyShoppingList } from "../../../Utils/Storage/storage";
 import { useTheme } from "../../../Utils/Themes/theme";
 import "./shoppingList.css";
+import { AddItemModal } from "./addItemModal/addItemModal";
 
 export const ShoppingList = (props) => {
     // Utils
@@ -24,16 +25,18 @@ export const ShoppingList = (props) => {
     };
 
     const handleAddItem = (newItem) => {
-        let newEdit = [...list];
-        newEdit.items = [...newEdit.items, newItem];
-
-        setList(newEdit);
+        let newList = list;
+        newList.items = [...newList.items, newItem];
 
         // addItem to list
         if (props.listId === "minimums") {
-            modifyMinimumShoppingList(newEdit);
+            setList(newList);
+            modifyMinimumShoppingList(newList);
         } else {
-            modifyShoppingList(props.listId, newEdit);
+            newList.timesUsed++;
+            newList.lastUsed = new Date();
+            setList(newList);
+            modifyShoppingList(props.listId, newList);
         }
 
         handleCloseModal();
@@ -41,18 +44,21 @@ export const ShoppingList = (props) => {
     };
 
     const handleCheckItem = (itemName) => {
-        const updatedList = [...list];
-        const itemIndex = updatedList.items.findIndex(item => item.name === itemName);
+        let newList = list;
+        const itemIndex = newList.items.findIndex(item => item.name === itemName);
 
         if (itemIndex !== -1) {
-            updatedList.items[itemIndex].checked = !updatedList.items[itemIndex].checked;
-            setList(updatedList);
+            newList.items[itemIndex].checked = !newList.items[itemIndex].checked;
 
             // modify list
             if (props.listId === "minimums") {
-                modifyMinimumShoppingList(updatedList);
+                setList(newList);
+                modifyMinimumShoppingList(newList);
             } else {
-                modifyShoppingList(props.listId, updatedList);
+                newList.timesUsed++;
+                newList.lastUsed = new Date();
+                setList(newList);
+                modifyShoppingList(props.listId, newList);
             }
         }
     };
@@ -73,7 +79,6 @@ export const ShoppingList = (props) => {
 
     React.useEffect(() => {
         const id = props.listId;
-        console.log(id);
 
         if (id) {
             getList(id);
@@ -83,12 +88,14 @@ export const ShoppingList = (props) => {
     return (
         <div className={`shoppingList ${theme}`}>
             <div className="header">
-                <h1 className="title">{props.title ? props.title : "[List Name]"}</h1>
+                <span className="title">{list.name ? list.name : "Minimums Shopping List"}</span>
             
                 <button className="addBtn" onClick={handleAddClick}>Add</button>
             </div>
 
-            {list.length > 0 ? 
+            <AddItemModal isOpen={showAddItemModal} onClose={handleCloseModal} onAddItem={handleAddItem}/>
+
+            {list.items ? list.items.length > 0 ? 
                 <div className="itemListContainer">
                     {list.items.map(item => (
                         <div key={item.name} className="item">
@@ -99,11 +106,11 @@ export const ShoppingList = (props) => {
 
                             <p className="itemCount">{item.count}</p>
 
-                            <input type="checkbox" onChange={() => handleCheckItem(item.name)}/>
+                            <input className="checkbox" type="checkbox" onChange={() => handleCheckItem(item.name)}/>
                         </div>
                     ))}
                 </div>
-            : props.listId === "minimums" ? <h1 className="minimumsExplanation">You're all set for now! Items near or below their required amounts will automatically be added to this list.</h1> : <h1 className="noItemsExplanation">No items found on this list</h1>}
+            : props.listId === "minimums" ? <h1 className="minimumsExplanation">You're all set for now! Items near or below their required amounts will automatically be added to this list.</h1> : <h1 className="noItemsExplanation">No items found on this list</h1> : props.listId === "minimums" ? <h1 className="minimumsExplanation">You're all set for now! Items near or below their required amounts will automatically be added to this list.</h1> : <h1 className="noItemsExplanation">No items found on this list</h1>}
 
         </div>
     );
