@@ -4,7 +4,7 @@ import React from "react";
 import { useTheme } from "../../../Utils/Themes/theme";
 import "./locationDeleteConfirmModal.css";
 
-export const LocationDeleteConfirmModal = ({isOpen, onClose, onDeleteConfirm, locationName, numOfItems}) => {
+export const LocationDeleteConfirmModal = ({isOpen, onClose, onDeleteConfirm, locationName}) => {
     // Utils
     const theme = useTheme().theme;
 
@@ -14,7 +14,7 @@ export const LocationDeleteConfirmModal = ({isOpen, onClose, onDeleteConfirm, lo
                 <i className="bx bx-x" onClick={onClose}/>
 
                 <h2>Delete Location?</h2>
-                <p className="informationalText">{`Are you sure you want to delete ${locationName ? locationName : "this location"}? There are ${numOfItems ? numOfItems.length : "a number of"} items in this location and they will be deleted as well!`}</p>
+                <p className="informationalText">{`Are you sure you want to delete ${locationName ? locationName : "this location"}? There are items in this location and they will be deleted as well!`}</p>
                 <p className="warningText">There is an irreversable action!</p>
 
                 <button onClick={onClose} className="cancelBtn">Nevermind!</button>

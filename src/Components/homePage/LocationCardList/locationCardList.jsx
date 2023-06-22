@@ -22,7 +22,7 @@ export const LocationCardList = (props) => {
 
     // Modals
     const [showAddModal, setShowAddModal] = React.useState(false);
-    const [showDeleteModal, setShowDeleteModal] = React.useState(false);
+    const [showDeleteModal, setShowDeleteModal] = React.useState([]);
 
     // Functions
     const handleCardClick = (id) => {
@@ -47,19 +47,23 @@ export const LocationCardList = (props) => {
 
         addLocation(newLocation);
         handleCloseAddModal();
-        window.location.reload();
+        getInitialLocations();
     };
 
     // Delete Confirm Modal
-    const handleOpenDeleteModal = () => {
-        setShowDeleteModal(true);
+    const handleOpenDeleteModal = (index) => {
+        const updatedModalState = [...showDeleteModal];
+        updatedModalState[index] = true;
+        setShowDeleteModal(updatedModalState);
     };
 
-    const handleCloseDeleteModal = () => {
-        setShowDeleteModal(false);
+    const handleCloseDeleteModal = (index) => {
+        const updatedModalState = [...showDeleteModal];
+        updatedModalState[index] = false;
+        setShowDeleteModal(updatedModalState);
     };
 
-    const handleDeleteLocation = async (locationId) => {
+    const handleDeleteLocation = async (locationId, index) => {
         if (locationId) {
             const location = await getLocation(locationId);
             if (location) {
@@ -67,13 +71,13 @@ export const LocationCardList = (props) => {
 
                 if (items.length > 0) {
                     // ask for confirmation - open modal
-                    handleOpenDeleteModal();
+                    handleOpenDeleteModal(index);
                 } else {
                     // delete locations
                     deleteLocation(locationId);
 
                     // reload page
-                    window.location.reload();
+                    getInitialLocations();
                 }
 
             } else {
@@ -82,16 +86,17 @@ export const LocationCardList = (props) => {
         }
     };
 
-    const deleteLocationConfirm = (locationId) => {
+    const deleteLocationConfirm = (locationId, index) => {
         if (locationId) {
             // delete location
+            console.log(locationId);
             deleteLocation(locationId);
 
             // close modal
-            handleCloseDeleteModal();
+            handleCloseDeleteModal(index);
             
             // refresh location list
-            window.location.reload();
+            getInitialLocations();
         }
     };
 
@@ -115,13 +120,13 @@ export const LocationCardList = (props) => {
         <div className={`locationCardList ${theme}`}>
         {/* Render location cards */}
         {locations.map((location, index) => (
-            <div key={index} className="location">
-                <button className="deleteBtn" onClick={() => handleDeleteLocation(location.id)}><i className="bx bx-trash"/></button>
+            <div key={location.id} className="location">
+                <button className="deleteBtn" onClick={() => handleDeleteLocation(location.id, index)}><i className="bx bx-trash"/></button>
                 <div className="locationClick" onClick={() => handleCardClick(location.id)}>
                     <LocationCard icon={location.icon} title={location.title} description={location.description ? location.description : ""}/>
                 </div>
 
-                <LocationDeleteConfirmModal isOpen={showDeleteModal} onClose={handleCloseDeleteModal} onDeleteConfirm={() => deleteLocationConfirm(location.id)} locationName={location.title} numOfItems={location.items.length}/>
+                <LocationDeleteConfirmModal isOpen={showDeleteModal[index]} onClose={() => handleCloseDeleteModal(index)} onDeleteConfirm={() => deleteLocationConfirm(location.id, index)} locationName={location.title}/>
             </div>
         ))}
 
