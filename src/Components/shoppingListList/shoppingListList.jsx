@@ -2,7 +2,7 @@ import React from "react";
 
 // Components
 import { AddListModal } from "./addListModal/addListModal";
-import { addShoppingList, getMinimumShoppingList, getShoppingLists } from "../../Utils/Storage/storage";
+import { addShoppingList, deleteShoppingList, getMinimumShoppingList, getShoppingLists } from "../../Utils/Storage/storage";
 
 // Utils
 import { dateBeautifier } from "../../Utils/dates";
@@ -17,7 +17,7 @@ export const ShoppingListList = (props) => {
 
     // States
     const [minimumList, setMinimumList] = React.useState(null);
-    const [lists, setLists] = React.useState([]);
+    const [lists, setLists] = React.useState(null);
 
     const [addListModal, setAddListModal] = React.useState(false);
 
@@ -33,7 +33,14 @@ export const ShoppingListList = (props) => {
     const handleAddList = (newList) => {
         addShoppingList(newList);
         closeAddListModal();
-        window.location.reload();
+        getInitialLists();
+    };
+
+    const handleDeleteList = async (listId) => {
+        if (listId) {
+            await deleteShoppingList(listId);
+            getInitialLists();
+        }
     };
 
     const handleListClick = (id) => {
@@ -92,17 +99,23 @@ export const ShoppingListList = (props) => {
 
             <hr/>
 
-            {lists.length > 0 ? 
+            {lists ? lists.legnth > 0 ?
                 <div className="shoppingListContainer">
                     {lists.map(list => (
-                        <div key={list.id} className="list" onClick={() => handleListClick(list.id)}>
-                            <h1 className="title">{list.name}</h1>
-                            <p className="lastUsed">{`Last used ${list.lastUsed ? dateBeautifier(list.lastUsed) : "unknown"}`}</p>
-                            <p className="numOfItems">{`${list.items.length} items`}</p>
-                            <i className="bx bx-chevron-right"/>
+                        <div className="listWrapper" key={list.id}>
+                            <div className="list" onClick={() => handleListClick(list.id)}>
+                                <h1 className="title">{list.name}</h1>
+                                <p className="lastUsed">{`Last used ${list.lastUsed ? dateBeautifier(list.lastUsed) : "unknown"}`}</p>
+                                <p className="numOfItems">{`${list.items.length} items`}</p>
+                                <i className="bx bx-chevron-right"/>
+                            </div>
+                            
+                            <div className="deleteButtonWrapper">
+                                <button className="deleteBtn" onClick={() => handleDeleteList(list.id)}><i className="bx bx-trash"/></button>
+                            </div>
                         </div>
                     ))}
-                </div> : <h1 style={{textAlign: "center"}}>No shopping lists found!</h1>
+                </div> : <h1 style={{textAlign: "center"}}>No shopping lists found!</h1> : <h1 style={{textAlign: "center"}}>No shopping lists found!</h1>
             }
 
             <AddListModal isOpen={addListModal} onClose={closeAddListModal} onAddList={handleAddList}/>

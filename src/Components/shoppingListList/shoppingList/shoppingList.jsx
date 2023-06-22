@@ -63,6 +63,31 @@ export const ShoppingList = (props) => {
         }
     };
 
+    const handleDeleteItem = (itemName) => {
+        if (props.listId && itemName) {
+            let newList = list;
+            const itemIndex = newList.items.findIndex(item => item.name === itemName);
+
+            if (itemIndex !== -1) {
+                const updatedItems = [
+                    ...newList.items.slice(0, itemIndex),
+                    ...newList.items.slice(itemIndex+1)
+                ];
+                newList.items = updatedItems;
+
+                setList(newList);
+                if (props.listId === "minimums") {
+                    modifyMinimumShoppingList(newList);
+                } else {
+                    modifyShoppingList(props.listId, newList);
+                }
+                getList(props.listId);
+            }
+        } else {
+            console.warn(`handleDeleteIOtem(${itemName}): listId/itemName not provided`);
+        }
+    };
+
     const getList = async (id) => {
         console.info(`Getting shopping list with id ${id}`);
 
@@ -90,7 +115,7 @@ export const ShoppingList = (props) => {
             <div className="header">
                 <span className="title">{list.name ? list.name : "Minimums Shopping List"}</span>
             
-                <button className="addBtn" onClick={handleAddClick}>Add</button>
+                {props.listId === "minimums" ? <div style={{display:"none"}}/> : <button className="addBtn" onClick={handleAddClick}>Add</button>}
             </div>
 
             <AddItemModal isOpen={showAddItemModal} onClose={handleCloseModal} onAddItem={handleAddItem}/>
@@ -107,6 +132,10 @@ export const ShoppingList = (props) => {
                             <p className="itemCount">{item.count}</p>
 
                             <input className="checkbox" type="checkbox" onChange={() => handleCheckItem(item.name)}/>
+
+                            <div className="deleteButtonWrapper">
+                                <button className="deleteBtn" onClick={() => handleDeleteItem(item.name)}><i className="bx bx-trash"/></button>
+                            </div>
                         </div>
                     ))}
                 </div>
