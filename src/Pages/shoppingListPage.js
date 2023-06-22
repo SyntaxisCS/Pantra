@@ -1,6 +1,9 @@
 import React from "react";
 
 // Components
+import pantraLight from "../Assets/Images/pantraHorizontalLight.svg";
+import pantraDark from "../Assets/Images/pantraHorizontalDark.svg";
+import { ShoppingList } from "../Components/shoppingListList/shoppingList/shoppingList";
 
 // Utils
 import { useTheme } from "../Utils/Themes/theme";
@@ -18,10 +21,6 @@ export const ShoppingListPage = (props) => {
         navigate("/sl");
     };
 
-    React.useEffect(() => {
-        // do stuff. Minimums list id will be "minimums"
-    }, []);
-
     return (
         <div className={`shoppingListPage ${theme}`}>
             <div className="logo"><img src={theme === "lightTheme" ? pantraLight : pantraDark}/></div>
@@ -29,6 +28,8 @@ export const ShoppingListPage = (props) => {
             <div className="backBtn" onClick={handleBackClick}>
                 <i className="bx bx-arrow-back"/><span>Back</span>
             </div>
+
+            <ShoppingList listId={id}/>
         </div>
     )
 };

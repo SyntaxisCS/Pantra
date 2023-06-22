@@ -34,7 +34,13 @@ export const ShoppingListList = (props) => {
         addShoppingList(newList);
         closeAddListModal();
         window.location.reload();
-    }
+    };
+
+    const handleListClick = (id) => {
+        if (id) {
+            navigate(`/sl/${id}`);
+        }
+    };
 
     const getInitialMinimumList = async () => {
         console.info("Getting minimum shopping list data...");
@@ -65,20 +71,6 @@ export const ShoppingListList = (props) => {
         getInitialLists();
     }, []);
 
-    /*
-        shopping list
-        title : string
-        items: []
-        timesUsed: 0;
-        lastUsed: date
-
-        items:
-        name:
-        brand:
-        number:
-        checked: t/f
-    */
-
     return (
         <div className={`shoppingListList ${theme}`}>
             <div className="header">
@@ -87,7 +79,7 @@ export const ShoppingListList = (props) => {
 
             <div className="minimumShoppingListContainer">
                 {minimumList ? (
-                    <div className="shoppingListContainer">
+                    <div className="shoppingListContainer" onClick={() => handleListClick("minimums")}>
                         <h1 className="title">Minimums List</h1>
                         
                         <p className="explanation">Items near or below their required amount are automatically added here.</p>
@@ -103,7 +95,7 @@ export const ShoppingListList = (props) => {
             {lists.length > 0 ? 
                 <div className="shoppingListContainer">
                     {lists.map(list => (
-                        <div key={list.id} className="list">
+                        <div key={list.id} className="list" onClick={() => handleListClick(list.id)}>
                             <h1 className="title">{list.name}</h1>
                             <p className="lastUsed">{`Last used ${list.lastUsed ? dateBeautifier(list.lastUsed) : "unknown"}`}</p>
                             <p className="numOfItems">{`${list.items.length} items`}</p>

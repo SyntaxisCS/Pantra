@@ -339,6 +339,24 @@ const getMinimumShoppingList = () => {
     }
 };
 
+const modifyMinimumShoppingList = (newData) => {
+    if (newData) {
+
+        // Get data file - get minimum shopping list
+        const dataFile = readFile(dataFilePath);
+        const minimumList = dataFile["minShoppingList"];
+
+        if (minimumList) {
+            dataFile["minShoppingList"] = newData;
+            writeFile(dataFilePath, dataFile);
+        } else {
+            console.warn(`userDataStorage.js - modifyMinimumShoppingList(${newData}): Something exploded - despite minShoppingList being an undeletable list, it cannot be found`);
+        }
+    } else {
+        console.warn(`userDataStorage.js - modifyMinimumShoppingList(${newData}): Missing new data`);
+    }
+};
+
 const getShoppingLists = () => {
     // get data file - get shopping lists from data file
     const shoppingLists = readFile(dataFilePath)["shoppingLists"];
@@ -530,6 +548,10 @@ ipcMain.handle("userDataStorage_deleteItem", (_, locationId, itemName) => {
 
 ipcMain.handle("userDataStorage_getMinimumShoppingList", () => {
     return getMinimumShoppingList();
+});
+
+ipcMain.handle("userDataStorage_modifyMinimumShoppingList", (_, newData) => {
+    modifyMinimumShoppingList(newData);
 });
 
 ipcMain.handle("userDataStorage_getShoppingLists", () => {

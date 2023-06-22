@@ -135,6 +135,14 @@ export const getMinimumShoppingList = async () => {
     }
 };
 
+export const modifyMinimumShoppingList = async (newData) => {
+    try {
+        await ipcRenderer.invoke("userDataStorage_modifyMinimumShoppingList", newData);
+    } catch (err) {
+        console.error(`Error modifying minimum shopping list: ${err}`);
+    }
+};
+
 export const getShoppingLists = async () => {
     try {
         const lists = await ipcRenderer.invoke("userDataStorage_getShoppingLists");

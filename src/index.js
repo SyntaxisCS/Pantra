@@ -13,6 +13,7 @@ import { ThemeSettingsPage } from "./Pages/Settings/themeSettings";
 import { AboutSettingsPage } from "./Pages/Settings/aboutSettings";
 import { GeneralSettingsPage } from "./Pages/Settings/generalSettings";
 import { ShoppingListListPage } from "./Pages/shoppingListListPage";
+import { ShoppingListPage } from "./Pages/shoppingListPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,6 +22,7 @@ root.render(
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/sl" element={<ShoppingListListPage/>}/>
+                <Route path="/sl/:id" element={<ShoppingListPage/>}/>
                 <Route path="/l/:id" element={<LocationItemPage/>}/>
 
                 {/* Settings */}

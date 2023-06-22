@@ -1,0 +1,22 @@
+.shoppingList {
+    width: 50%;
+    margin: auto;
+    padding-top: 5em;
+}
+
+.shoppingList .header {
+    width: 100%;
+    display: flex;
+    min-height: 40px;
+    align-items: center;
+    height: fit-content;
+}
+
+.shoppingList .minimumsExplanation {
+    font-size: 18px;
+    text-align: center;
+}
+
+.shoppingList .noItemsExplanation {
+    text-align: center;
+}
