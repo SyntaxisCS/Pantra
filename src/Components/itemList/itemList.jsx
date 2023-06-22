@@ -65,6 +65,11 @@ export const ItemList = (props) => {
             if (itemIndex !== -1) {
                 // subtract from count
                 newItemArray[itemIndex].count--;
+                
+                // item counts cannot be less than 0
+                if (newItemArray[itemIndex].count < 0) {
+                    newItemArray[itemIndex].count = 0;
+                }
 
                 // minimumShoppingHandler
                 checkItemMinimums(newItemArray[itemIndex]);
