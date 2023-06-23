@@ -1,7 +1,16 @@
 const {app, screen, BrowserWindow} = require("electron");
 const appSettings = require("./settings");
 const path = require("path");
-const isDev = require("electron-is-dev");
+
+let isDev = false;
+
+try {
+    const electronIsDev = require("electron-is-dev");
+    isDev = electronIsDev;
+} catch (error) {
+    console.error("Failed to load electron-is-dev package:", error);
+    console.warn("Assuming production environment");
+};
 
 const createWindow = () => {
 
@@ -41,10 +50,6 @@ const createWindow = () => {
     // Dev Tools
     if (isDev) {
         mainWindow.webContents.openDevTools({mode: "detach"});
-    }
-
-    if (require("electron-squirrel-startup")) {
-        app.quit();
     }
 }
 

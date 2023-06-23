@@ -1,6 +1,6 @@
 {
   "name": "pantra",
-  "version": "0.1.3",
+  "version": "0.1.3a",
   "description": "Kitchen food stock manager",
   "author": "Charles Stello",
   "main": "public/electron.js",
