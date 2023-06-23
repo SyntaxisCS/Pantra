@@ -96,7 +96,7 @@ export const LocationCardList = (props) => {
             handleCloseDeleteModal(index);
             
             // refresh location list
-            getInitialLocations();
+            window.location.reload();
         }
     };
 

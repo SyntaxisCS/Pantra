@@ -2,6 +2,7 @@
     width: 50%;
     margin: auto;
     padding-top: 5em;
+    transition: width 0.5s;
 }
 
 .shoppingListList .header {
@@ -213,4 +214,17 @@
 
 .shoppingListList.darkTheme .shoppingListContainer i:hover {
     background-color: color-mix(in srgb, black 90%, var(--darkBackground) 10%);
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 675px) {
+    .shoppingListList {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 555px) {
+    .shoppingListList {
+        width: 70%;
+    }
 }

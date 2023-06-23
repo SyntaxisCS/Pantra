@@ -50,7 +50,7 @@ export const AddItemModal = ({isOpen, onClose, onAddItem}) => {
             const newItem = {
                 name: selectedName,
                 brand: selectedBrand !== "" ? selectedBrand : null,
-                number: selectedNumber,
+                count: selectedNumber,
                 checked: false
             }
 

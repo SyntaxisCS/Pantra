@@ -2,6 +2,7 @@
     width: 50%;
     margin: auto;
     padding-top: 5em;
+    transition: width 0.5s;
 }
 
 .itemList .header {
@@ -151,4 +152,17 @@
 .itemList.darkTheme .item .itemCount,
 .itemList.darkTheme .item .requiredCount {
     color: var(--darkText);
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 675px) {
+    .itemList {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 555px) {
+    .itemList {
+        width: 68%;
+    }
 }

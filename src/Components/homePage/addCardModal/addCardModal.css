@@ -107,5 +107,6 @@
 }
 
 .addCardModal.show.darkTheme .modal input {
+	color: var(--darkText);
 	background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
 }

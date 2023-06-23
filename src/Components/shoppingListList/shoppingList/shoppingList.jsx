@@ -97,6 +97,7 @@ export const ShoppingList = (props) => {
             setList(listData);
         } else {
             const listData = await getShoppingList(id);
+            console.log(listData);
 
             setList(listData);
         }

@@ -99,7 +99,7 @@ export const ShoppingListList = (props) => {
 
             <hr/>
 
-            {lists ? lists.legnth > 0 ?
+            {lists ? lists.length > 0 ?
                 <div className="shoppingListContainer">
                     {lists.map(list => (
                         <div className="listWrapper" key={list.id}>
