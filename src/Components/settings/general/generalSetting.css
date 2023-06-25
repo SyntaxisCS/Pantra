@@ -1,32 +1,57 @@
-.generalSettingsPage {
-    min-height: 100vh;
-    height: fit-content;
-    color: var(--lightText);
-    background-color: var(--lightBackground);
+.generalSettings {
+    width: 50%;
+    margin: auto;
+    margin-top: 0;
+    display: flex;
+    max-width: 600px;
+    position: relative;
+    flex-direction: column;
+    transition: all ease 0.5s;
+    border-radius: 0 0 5px 5px;
+    padding: 20px 50px 50px 50px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
 }
 
-.generalSettingsPage .backBtn {
-    top: 1em;
-    left: 1em;
+.generalSettings .title {
+    text-align: center;
+}
+
+.generalSettings h3 {
+    margin: auto;
+    margin-top: 0;
+}
+
+.generalSettings .explanation {
+    margin-top: 0;
+    font-size: 14px;
+    text-align: center;
+    color: color-mix(in srgb, white 30%, var(--lightText) 70%);
+}
+
+.generalSettings .resetBtn {
+    border: none;
+    margin: 3px 0;
+    color: var(--darkText);
+    font-size: 17px;
+    margin-top: 1em;
     cursor: pointer;
-    position: absolute;
+    margin-bottom: 0;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    background-color: var(--errorText);
 }
 
-.generalSettingsPage .backBtn:hover {
-    color: var(--primary);
-}
-
-.generalSettingsPage .backBtn i {
-    font-size: 20px;
-}
-
-.generalSettingsPage .backBtn span {
-    font-size: 20px;
-    margin-left: 0.5em;
+.generalSettings .resetBtn:hover {
+    background-color: var(--accent);
 }
 
 /* Dark Theme */
-.generalSettingsPage.darkTheme {
-    color: var(--darkText);
-    background-color: var(--darkBackground);
+.generalSettings.darkTheme {
+    background-color: color-mix(in srgb, white 5%, var(--darkBackground) 95%);
+}
+
+.generalSettings.darkTheme .explanation {
+    color: color-mix(in srgb, white 60%, var(--lightText) 40%);
 }

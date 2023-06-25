@@ -62,6 +62,16 @@ const readFile = (filePath) => {
     }
 };
 
+const completeDataReset = () => {
+    // delete items
+    fs.rmSync(dataFilePath);
+    fs.rmSync(settingsFilePath);
+
+    // restart app
+    app.relaunch();
+    app.quit();
+};
+
 // Settings
 const getSetting = (setting) => {
     if (setting) {
@@ -476,6 +486,10 @@ const deleteShoppingList = (id) => {
 
 // Expose IPC Methods
 
+ipcMain.handle("userDataStorage_completeDataReset", () => {
+    completeDataReset();
+});
+
 // Settings
 ipcMain.handle("userDataStorage_saveSettings", (_, settings) => {
     writeFile(settingsFilePath, settings);
@@ -593,6 +607,7 @@ module.exports = {
         return readFile(dataFilePath);
     },
 
+    completeDataReset,
     // Locations
     getLocations,
     getLocation,

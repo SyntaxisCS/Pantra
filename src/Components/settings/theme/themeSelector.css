@@ -53,7 +53,7 @@
     background-color: var(--primary);
 }
 
-.themeSelector button[type="button"] {
+.themeSelector button[type="button"]:hover {
     background-color: var(--accent);
 }
 

@@ -6,7 +6,7 @@ import { useTheme } from "../../Utils/Themes/theme";
 import { addItem, deleteItem, getLocation, modifyItem } from "../../Utils/Storage/storage";
 import { AddItemModal } from "./addItemModal/addItemModal";
 import "./itemList.css";
-import { checkItemMinimums } from "../../Utils/Storage/minimumShoppingListHandler";
+import { checkItemMinimums, deleteFromMinimumsList } from "../../Utils/Storage/minimumShoppingListHandler";
 
 export const ItemList = (props) => {
     // Utils
@@ -88,7 +88,7 @@ export const ItemList = (props) => {
     const handleDeleteItem = (itemName) => {
         if (props.location && itemName) {
             // minimumShoppingHandler
-            checkItemMinimums(newItemArray[itemIndex].name);
+            deleteFromMinimumsList(itemName);
 
             deleteItem(props.location, itemName);
             getInitialItems();

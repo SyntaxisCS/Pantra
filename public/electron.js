@@ -14,18 +14,14 @@ try {
 
 const createWindow = () => {
 
-    const displaySize = screen.getPrimaryDisplay().bounds;    
-    let minSizeX = 450;
-    let minSizeY = 630;
-
     const dimensions = appSettings.getWindowSettings();
 
     const mainWindow = new BrowserWindow({
         show: true,
         width: dimensions[0],
         height: dimensions[1],
-        minWidth: minSizeX,
-        minHeight: minSizeY,
+        minWidth: 450,
+        minHeight: 630,
         // frame: process.platform === "darwin" ? false : true,
         // titleBarStyle: process.platform === "darwin" ? "hidden" : "default",
         webPreferences: {

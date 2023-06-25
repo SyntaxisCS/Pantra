@@ -2,6 +2,14 @@ const { ipcRenderer } = window.require("electron");
 
 
 // Settings
+export const completeDataReset = async () => {
+    try {
+        await ipcRenderer.invoke("userDataStorage_completeDataReset");
+    } catch (err) {
+        console.error(`Error doing complete data reset: ${err}`);
+    }
+};
+
 export const saveSetting = async (name, value) => {
     try {
         await ipcRenderer.invoke("userDataStorage_saveSetting", name, value);

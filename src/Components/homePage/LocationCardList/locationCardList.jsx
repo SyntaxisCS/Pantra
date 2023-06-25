@@ -11,6 +11,7 @@ import { addLocation, deleteLocation, getLocation, getLocations } from "../../..
 import { useTheme } from "../../../Utils/Themes/theme";
 import "./locationCardList.css";
 import { LocationDeleteConfirmModal } from "../locationDeleteConfirmModal/locationDeleteConfirmModal.jsx";
+import { checkLocationItems } from "../../../Utils/Storage/minimumShoppingListHandler.js";
 
 export const LocationCardList = (props) => {
     // Utils
@@ -73,6 +74,9 @@ export const LocationCardList = (props) => {
                     // ask for confirmation - open modal
                     handleOpenDeleteModal(index);
                 } else {
+                    // delete location items from minimum list
+                    checkLocationItems(locationId);
+
                     // delete locations
                     deleteLocation(locationId);
 
@@ -88,8 +92,10 @@ export const LocationCardList = (props) => {
 
     const deleteLocationConfirm = (locationId, index) => {
         if (locationId) {
+            // delete location items from minimum list
+            checkLocationItems(locationId);
+
             // delete location
-            console.log(locationId);
             deleteLocation(locationId);
 
             // close modal

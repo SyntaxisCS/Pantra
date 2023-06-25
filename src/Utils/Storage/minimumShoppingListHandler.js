@@ -1,5 +1,6 @@
-import { getMinimumShoppingList, modifyMinimumShoppingList } from "./storage";
+import { getLocation, getMinimumShoppingList, modifyMinimumShoppingList } from "./storage";
 
+// Check items when they are created or their count is modified
 export const checkItemMinimums = async (item) => {
     if (item) {
         // assign variables
@@ -16,13 +17,28 @@ export const checkItemMinimums = async (item) => {
             if (inversePercentage <= 0.15) {
                 addToMinimumsList(item, inversePercentage);
             } else {
-                deleteFromMinimumsList(item);
+                deleteFromMinimumsList(item.name);
             }
         }
     }
 };
 
-const addToMinimumsList = async (item) => {
+// Checks all items in a location to see if they are in the minimum list and removes them if they are before the location is deleted
+export const checkLocationItems = async (locationId) => {
+    if (locationId) {
+        // get location
+        const location = await getLocation(locationId);
+
+        if (location && location.items.length > 0) {
+            location.items.forEach(item => {
+                deleteFromMinimumsList(item.name);
+            });
+        }
+    }
+};
+
+// takes full item object and adds it to the minimum list
+export const addToMinimumsList = async (item) => {
 
     // amount to buy algorithm
     const idealItems = (item.requiredCount * 1.15).toFixed(0);
@@ -69,17 +85,18 @@ const addToMinimumsList = async (item) => {
     }
 };
 
-const deleteFromMinimumsList = async (item) => {
+// takes item name and deletes it from the minimum list, if it exists
+export const deleteFromMinimumsList = async (itemName) => {
     // check if exists
     const minimumShoppingList = await getMinimumShoppingList();
 
     // make copy
     let newShoppingList = minimumShoppingList;
 
-    if (minimumShoppingList) {
+    if (minimumShoppingList && itemName) {
         // check if item alrady exists
 
-        const itemIndex = newShoppingList.items.findIndex((minItem) => minItem.name === item.name);
+        const itemIndex = newShoppingList.items.findIndex((minItem) => minItem.name === itemName);
 
         if (itemIndex !== -1) {
             const updatedItems = [
