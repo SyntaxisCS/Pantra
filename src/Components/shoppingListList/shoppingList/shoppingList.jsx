@@ -113,11 +113,14 @@ export const ShoppingList = (props) => {
 
     return (
         <div className={`shoppingList ${theme}`}>
+            {props.listId === "minimums" ? <div className="header">
+                <span className="title" style={{textAlign: "center", margin: "auto"}}>{list.name ? list.name : "Minimums Shopping List"}</span>
+            </div> :
             <div className="header">
                 <span className="title">{list.name ? list.name : "Minimums Shopping List"}</span>
             
-                {props.listId === "minimums" ? <div style={{display:"none"}}/> : <button className="addBtn" onClick={handleAddClick}>Add</button>}
-            </div>
+                <button className="addBtn" onClick={handleAddClick}>Add</button>
+            </div>}
 
             <AddItemModal isOpen={showAddItemModal} onClose={handleCloseModal} onAddItem={handleAddItem}/>
 
