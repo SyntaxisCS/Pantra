@@ -14,7 +14,7 @@ export const AboutSettings = (props) => {
         <div className={`aboutSettings ${theme}`}>
             <div className="header">
                 <div className="logo"><img src={theme === "lightTheme" ? pantraLight : pantraDark}/></div>
-                <p className="version">Version 0.1.6</p>
+                <p className="version">Version 0.1.6a</p>
             </div>
 
             <div className="specialThanks">
