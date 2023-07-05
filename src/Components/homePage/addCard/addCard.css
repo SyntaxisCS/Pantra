@@ -32,5 +32,5 @@
 
 .addCard.darkTheme:hover {
     border: 1px solid var(--accent);
-    background-color: color-mix(in srgb, black 90%, var(--darkBackground) 10%);
+    background-color: color-mix(in srgb, black 50%, var(--darkBackground) 50%);
 }
